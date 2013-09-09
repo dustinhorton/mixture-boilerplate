@@ -15,6 +15,19 @@ $dur-ease: $dur $ease;
 $gutter:   20px;
 $gutter-v: 50px;
 
+$full:       1280px;
+$gt-full:    $full + 1;
+$lt-full:    $full - 1;
+$desktop:    960px;
+$lt-desktop: $desktop - 1;
+$tablet:     768px;
+$lt-tablet:  $tablet - 1;
+$mobile:     568px;
+$lt-mobile:  $mobile - 1;
+$mobile-sm:  320px;
+
+$bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile $mobile, lt-mobile $lt-mobile, mobile-sm $mobile-sm;
+
 
 
 
@@ -282,18 +295,6 @@ $gutter-v: 50px;
 //  ----------------------------------------------------------------------
 //  =MEDIA QUERIES
 //  ----------------------------------------------------------------------
-$full:         1280px;
-$gt-full:      $full + 1;
-$lt-full:      $full - 1;
-$desktop:      960px;
-$lt-desktop:   $desktop - 1;
-$tablet:       768px;
-$lt-tablet:    $tablet - 1;
-$mobile:       568px;
-$lt-mobile:    $mobile - 1;
-$mobile-sm:    320px;
-
-
 @mixin mq($bp) {
     @if $bp == webkit {
         @media (-webkit-min-device-pixel-ratio: 0) {
@@ -351,29 +352,21 @@ $mobile-sm:    320px;
 .hide { display: none; }
 .show { display: inherit; }
 
+@each $bp in $bps {
+    $bp: nth($bp, 1);
 
-.show-hide-lt-full    { @include mq($lt-full)    { display: none; } }
-.show-hide-desktop    { @include mq($desktop)    { display: none; } }
-.show-hide-lt-desktop { @include mq($lt-desktop) { display: none; } }
-.show-hide-tablet     { @include mq($tablet)     { display: none; } }
-.show-hide-lt-tablet  { @include mq($lt-tablet)  { display: none; } }
-.show-hide-mobile     { @include mq($mobile)     { display: none; } }
-.show-hide-lt-mobile  { @include mq($lt-mobile)  { display: none; } }
-
-
-.hide-show-tablet {
-    display: none !important;
-    @include mq($tablet) { display: inherit !important; }
+    .show-hide-#{$bp} {
+        @include mq(#{$bp}) { display: none; }
+    }
 }
 
-.hide-show-lt-tablet {
-    display: none !important;
-    @include mq($lt-tablet) { display: inherit !important; }
-}
+@each $bp in $bps {
+    $bp: nth($bp, 1);
 
-.hide-show-mobile {
-    display: none !important;
-    @include mq($mobile) { display: inherit !important; }
+    .hide-show-#{$bp} {
+        display: none !important;
+        @include mq(#{$bp}) { display: inherit !important; }
+    }
 }
 
 

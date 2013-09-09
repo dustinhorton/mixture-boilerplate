@@ -6,8 +6,6 @@
 .cols-rev > [class*="col-"] { float: right; }
 
 
-$bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile $mobile, lt-mobile $lt-mobile, mobile-sm $mobile-sm;
-
 @each $bp in $bps {
     @media (max-width: #{nth($bp, 2)}) {
         $bp: nth($bp, 1);
@@ -172,37 +170,17 @@ $bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile
 
 
 
-/*  ----------------------------------------------------------------------
-    =SECTIONS
-    ----------------------------------------------------------------------  */
+//  ----------------------------------------------------------------------
+//  =SECTIONS
+//  ----------------------------------------------------------------------
 @mixin section {
     margin: 0 0 $gutter-v; @include cf;
 }
 
-.section-lt-full {
-    @include mq($lt-full) { @include section; }
-}
+@each $bp in $bps {
+    $bp: nth($bp, 1);
 
-.section-desktop {
-    @include mq($desktop) { @include section; }
-}
-
-.section-tablet {
-    @include mq($tablet) { @include section; }
-}
-
-.section-lt-tablet {
-    @include mq($lt-tablet) { @include section; }
-}
-
-.section-mobile {
-    @include mq($mobile) { @include section; }
-}
-
-.section-lt-mobile {
-    @include mq($lt-mobile) { @include section; }
-}
-
-.section-mobile-sm {
-    @include mq($mobile-sm) { @include section; }
+    .section-#{$bp} {
+        @include mq(#{$bp}) { @include section; }
+    }
 }
