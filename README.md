@@ -1,1 +1,1 @@
-A boilerplate for Mixture with Compass.
+A boilerplate with Compass.
