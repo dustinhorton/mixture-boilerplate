@@ -1,0 +1,50 @@
+//  ----------------------------------------------------------------------
+//  =RESET
+//  ----------------------------------------------------------------------
+*, *:before, *:after { box-sizing: border-box; }
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, hr, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { background: transparent; border: 0; font-size: 100%; margin: 0; padding: 0; vertical-align: baseline; }
+
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+audio, video, canvas { display: inline-block; }
+
+ul, ol { list-style: none; }
+
+img { vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+address { font-style: normal; }
+
+blockquote { quotes: none; }
+blockquote:before, blockquote:after { content: ''; content: none; }
+
+iframe { display: block; }
+
+h1, h2, h3, h4, h5, h6 { line-height: 1; }
+
+a { color: inherit; text-decoration: none; }
+a:focus { /*outline: thin dotted;*/ outline: 0; }
+a:hover, a:active { outline: 0; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+input, textarea, select, button { border: 0; font-size: 100%; margin: 0; outline: 0; }
+label, button { cursor: pointer; }
+input, select { vertical-align: middle; }
+input[type="checkbox"] { vertical-align: bottom; }
+input[type="radio"] { vertical-align: text-bottom; }
+textarea { border: 0; overflow: auto; resize: vertical; vertical-align: top; }
+button { color: inherit; }
+button::-moz-focus-inner { border: 0; padding: 0; }
+
+small { font-size: 100%; }
+
+
+::-webkit-input-placeholder { text-overflow: ellipsis; }
+::-moz-placeholder { text-overflow: ellipsis; }
+:-moz-placeholder { text-overflow: ellipsis; }

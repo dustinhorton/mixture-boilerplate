@@ -1,0 +1,88 @@
+@import "compass";
+@import "reset";
+@import "plugins";
+@import "sass";
+@import "grid";
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =BASE
+//  ----------------------------------------------------------------------
+body, input, textarea, select, button { font-family: $fonts; /*-webkit-font-smoothing: antialiased;*/ }
+body { color: $text; font-size: $font-size; line-height: 1; }
+
+%h1 {  }
+%h2 {  }
+%h3 {  }
+%h4 {  }
+%h5 {  }
+%h6 {  }
+@for $i from 1 through 6 {
+    h#{$i} { @extend %h#{$i}; }
+}
+
+p,
+address,
+blockquote,
+figcaption,
+.copy-block { line-height: $line-height; margin: 0 0 10px; }
+.copy,
+.copy > li { line-height: $line-height; }
+
+img { max-width: 100%; height: auto; }
+
+:first-child { margin-top: 0; }
+:last-child { margin-bottom: 0; }
+
+
+/*  =FORMS  */
+input,
+textarea { @include placeholder($input-placeholder); }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =SCAFFOLDING
+//  ----------------------------------------------------------------------
+.container-main {
+    .lt-ie9 & { width: $full; margin: auto; }
+}
+
+.container { margin: auto; padding-right: $gutter; padding-left: $gutter; }
+
+.section { margin: 0 0 $gutter-v; }
+.section:last-child { margin-bottom: 0; }
+
+#content {  }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =COMPONENTS
+//  ----------------------------------------------------------------------
+/*  =BUTTONS  */
+.btn-primary {  }
+
+
+
+
+/*  ----------------------------------------------------------------------
+    =PARTIALS
+    ----------------------------------------------------------------------  */
+/*  =HEADER  */
+.header-main {  }
+
+
+/*  =FOOTER  */
+.footer-main {  }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =VIEWS
+//  ----------------------------------------------------------------------

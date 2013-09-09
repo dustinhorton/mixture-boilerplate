@@ -1,0 +1,45 @@
+<!doctype html>
+<!--[if IE 8]>         <html lang="en" class="no-js ie ie8 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html lang="en" class="no-js ie ie9">        <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js">               <!--<![endif]-->
+
+<meta charset="utf-8">
+
+<title>{% block title %}Boilerplate{% endblock %}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="author"      content="">
+
+<meta property="og:site_name" content="">
+<meta property="og:url"       content="">
+<meta property="og:title"     content="">
+<meta property="og:image"     content="">
+<meta property="og:type"      content="">
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<script src="/assets/js/lib/modernizr-2.6.2-custom.min.js"></script>
+
+
+<body class="{% block class %}{% endblock %}">
+    <header id="header" class="header-main"></header>
+
+    {% block content %}{% endblock %}
+
+    <footer id="footer" class="footer-main"></footer>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<!--[if lt IE 9]> <script src="/assets/js/polyfill/lt-ie9.min.js"></script> <![endif]-->
+<script src="/assets/js/script.js"></script>
+
+{% block js %}{% endblock %}
+
+<script>
+var _gaq=[['_setAccount','UA-XXXXX-Y'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>

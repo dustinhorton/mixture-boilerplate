@@ -1,0 +1,391 @@
+//  ----------------------------------------------------------------------
+//  =VARS
+//  ----------------------------------------------------------------------
+$text: #000;
+$input-placeholder: rgba($text,0.75);
+
+$fonts: helvetica neue, helvetica, arial, sans-serif;
+$font-size: 13px;
+$line-height: 1.35;
+
+$dur: 150ms;
+$ease: ease-in-out;
+$dur-ease: $dur $ease;
+
+$gutter:   20px;
+$gutter-v: 50px;
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =SPRITES
+//  ----------------------------------------------------------------------
+//@import 'i/s/*.png';
+//@include all-s-sprites(true);
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =WEB FONTS
+//  ----------------------------------------------------------------------
+//@each $font in  {
+//    @font-face {
+//          font-family: $font; font-weight: normal;
+//          src: url('/css/font/#{$font}.eot');
+//          src: url('/css/font/#{$font}.eot?') format('eot'),
+//               url('/css/font/#{$font}.woff') format('woff'),
+//               url('/css/font/#{$font}.ttf')  format('truetype')
+//    }
+//}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =MIXINS
+//  ----------------------------------------------------------------------
+@mixin border($color) {
+    border: 1px $color solid;
+}
+
+
+@mixin btn-full {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.btn-full { @include btn-full; }
+
+
+@mixin center($w, $h) {
+    width: $w;
+    height: $h;
+    margin: (-$h/2) 0 0 (-$w/2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+@mixin center-v {
+    display: table;
+    > * { display: table-cell; vertical-align: middle; }
+}
+
+@mixin container {
+    padding-right: $container-gutter; padding-left: $container-gutter;
+}
+
+
+@mixin copy {  /**/
+    line-height: $line-height; margin: 10px 0;
+    > li { line-height: $line-height; margin: 10px 0; }
+}
+
+
+@mixin cf {
+    &:before,
+    &:after { content: ' '; display: table; }
+    &:after { clear: both; }
+}
+.cf { @include cf; }
+
+
+@mixin click {
+    cursor: pointer !important;
+}
+
+
+@mixin hidden {
+    width: 1px; height: 1px; border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute;
+
+}
+.hidden { @include hidden; }
+
+
+@mixin list-bulleted {
+    list-style: disc; padding-left: 1.35em;
+}
+.list-bulleted { @include list-bulleted; }
+
+@mixin list-numbered {
+    list-style: decimal; padding-left: 1.35em;
+}
+.list-numbered { @include list-numbered; }
+
+@mixin list-alpha {
+    list-style: lower-alpha; padding-left: 1.35em;
+}
+.list-alpha { @include list-alpha; }
+
+
+@mixin list-float($m: 0) {
+    @include cf;
+    > li { float: left; }
+    @if $m != 0 {
+        > li + li { margin-left: $m; }
+    }
+}
+
+@mixin list-inline($m: 0) {
+    > li { display: inline-block; }
+    @if $m != 0 {
+        > li + li { margin-left: $m; }
+    }
+}
+@mixin list-inline-content($m) {
+    > li { display: inline-block; margin-right: $m; }
+}
+
+
+@mixin ir {
+    /*background-color: transparent;*/ border: 0; overflow: hidden;
+    &:before { content: ''; width: 0; height: 150%; display: block; }
+}
+.ir { @include ir; }
+
+
+@mixin media($m: 24px) {
+    float: left;
+    margin: 0 $m 0 0;
+}
+@mixin media-content {
+    overflow: hidden;
+}
+
+@mixin media-simple($m: 24px) {
+    > .media-media { @include media($m); }
+    > .media-media + [class*="-content"] { @include media-content; }
+}
+
+@mixin media-centered($m: 24px) {
+    width: 100%; display: table;
+
+    > .media-media,
+    > .media-content { display: table-cell; vertical-align: middle; }
+
+    &.media-top > .media-content { vertical-align: top; }
+    &.media-bottom > .media-content { vertical-align: bottom; }
+
+    > .media-media { padding-right: $m; }
+    > .media-media > img { max-width: none; display: block; }
+    > .media-content { width: 100%; }
+}
+.media-centered { @include media-centered; }
+
+
+@mixin modal-w($w) {
+    width: $w; margin: 0 0 0 (-$w/2);
+    @include mq($w + ($modal-s*2)) { width: auto; margin: 0; top: $modal-s; right: $modal-s; left: $modal-s; }
+}
+
+
+@mixin placeholder($color) {
+    &:-moz-placeholder { color: $color; }
+    &::-webkit-input-placeholder { color: $color; }
+}
+.placeholder { color: $input-placeholder-color; }
+
+
+@mixin pull($dir: right) {
+    float: $dir;
+}
+.pull-right { @include pull; }
+.pull-left { @include pull(left); }
+
+
+@mixin reset {
+    width: auto;
+    border: 0;
+    float: none;
+    margin: 0;
+    padding: 0;
+    @include reset-font();
+}
+@mixin reset-font {
+    color: $text;
+    font: $font-size/#{$line-height} helvetica neue, helvetica, arial, sans-serif;
+    text-transform: none;
+}
+
+
+// @mixin reset-cols {
+//     .cols { margin-left: 0 !important; }
+//     [class*="col-"] { width: auto !important; float: none !important; padding-left: 0 !important; }
+// }
+// @mixin reset-grid {
+//     [class*="grid-"] { margin-left: 0 !important; }
+//     [class*="grid-"] > li { width: auto !important; float: none !important; padding-left: 0 !important; }
+// }
+
+
+@mixin text-truncate {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+@mixin text-break {
+    word-break: break-all;
+    word-break: break-word;
+    word-wrap: break-word;
+}
+
+@mixin text-no-break {
+    -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+            hyphens: auto;
+}
+
+
+@mixin triangle($dir, $size, $color) {
+    position: relative;
+    @if ($dir == "top" or $dir == "up" or $dir == "left" or $dir == "before") {
+        &:before {
+            content: '';
+            border: $size transparent solid;
+            position: absolute;
+            top: -$size*2;
+            @if ($dir == "top" or $dir == "up") {
+                border-bottom-color: $color;
+                left: 50%;
+                margin: 0 0 0 (-$size);
+            } @else if ($dir == "right" or $dir == "after") {
+                border-left-color: $color;
+            }
+        }
+    } @else if ($dir == "bottom" or $dir == "down" or $dir == "left" or $dir == "before") {
+        &:after {
+            content: '';
+            border: $size transparent solid;
+            position: absolute;
+            top: -$size;
+            @if ($dir == "bottom" or $dir == "down") {
+                border-top-color: $color;
+            } @else if ($dir == "left" or $dir == "before") {
+                border-right-color: $color;
+            }
+        }
+    }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =MEDIA QUERIES
+//  ----------------------------------------------------------------------
+$full:         1280px;
+$gt-full:      $full + 1;
+$lt-full:      $full - 1;
+$desktop:      960px;
+$lt-desktop:   $desktop - 1;
+$tablet:       768px;
+$lt-tablet:    $tablet - 1;
+$mobile:       568px;
+$lt-mobile:    $mobile - 1;
+$mobile-sm:    320px;
+
+
+@mixin mq($bp) {
+    @if $bp == webkit {
+        @media (-webkit-min-device-pixel-ratio: 0) {
+            @content;
+        }
+    }
+
+    @else if $bp == retina {
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (max-width: $bp) {
+            @content;
+        }
+    }
+}
+
+@mixin mq-min($bp) {
+    @media (min-width: $bp) {
+        @content;
+    }
+}
+
+@mixin mq-h($bp) {
+    @media (max-height: $bp) {
+        @content;
+    }
+}
+
+@mixin mq-h-min($bp) {
+    @media (min-height: $bp) {
+        @content;
+    }
+}
+
+@mixin mq-class($bp, $class) {
+    @include mq($bp) {
+        @content;
+    }
+
+    .#{$class} & {
+        @content;
+    }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =HELPERS
+//  ----------------------------------------------------------------------
+.hide { display: none; }
+.show { display: inherit; }
+
+
+.show-hide-lt-full    { @include mq($lt-full)    { display: none; } }
+.show-hide-desktop    { @include mq($desktop)    { display: none; } }
+.show-hide-lt-desktop { @include mq($lt-desktop) { display: none; } }
+.show-hide-tablet     { @include mq($tablet)     { display: none; } }
+.show-hide-lt-tablet  { @include mq($lt-tablet)  { display: none; } }
+.show-hide-mobile     { @include mq($mobile)     { display: none; } }
+.show-hide-lt-mobile  { @include mq($lt-mobile)  { display: none; } }
+
+
+.hide-show-tablet {
+    display: none !important;
+    @include mq($tablet) { display: inherit !important; }
+}
+
+.hide-show-lt-tablet {
+    display: none !important;
+    @include mq($lt-tablet) { display: inherit !important; }
+}
+
+.hide-show-mobile {
+    display: none !important;
+    @include mq($mobile) { display: inherit !important; }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =FUNCTIONS
+//  ----------------------------------------------------------------------
+@function em ($px, $font-size: $font-size) {
+    @return ($px / $font-size) * 1em;
+}
+
+@function w ($target, $context) {
+    @return ($target / $context) * 100%;
+}

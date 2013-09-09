@@ -1,4 +1,1 @@
-mixture-boilerplate
-===================
-
-A boilerplate for Mixture.
+A boilerplate for Mixture with Compass.
