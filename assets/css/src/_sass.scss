@@ -182,11 +182,11 @@ $gutter-v: 50px;
 }
 
 
-@mixin placeholder($color) {
+@mixin placeholder($color: $input-placeholder) {
     &:-moz-placeholder { color: $color; }
     &::-webkit-input-placeholder { color: $color; }
 }
-.placeholder { color: $input-placeholder-color; }
+.placeholder { color: $input-placeholder; }
 
 
 @mixin pull($dir: right) {
