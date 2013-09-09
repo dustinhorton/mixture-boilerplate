@@ -6,43 +6,30 @@
 .cols-rev > [class*="col-"] { float: right; }
 
 
-@each $bp in $bps {
-    @media (max-width: #{nth($bp, 2)}) {
-        $bp: nth($bp, 1);
-
-        @if $bp == "full" {
-            $bp: "";
-        } @else {
-            $bp: "#{$bp}-";
-        }
-
-        .col-#{$bp}1-2 { width: 50%; }
-
-        @for $i from 1 through 2 {
-            .col-#{$bp}#{$i}-3 { width: w($i,3); }
-        }
-
-        @for $i from 1 through 3 {
-            .col-#{$bp}#{$i}-4 { width: w($i,4); }
-        }
-
-        @for $i from 1 through 4 {
-            .col-#{$bp}#{$i}-5 { width: w($i,5); }
-        }
-
-        @for $i from 1 through 5 {
-            .col-#{$bp}#{$i}-6 { width: w($i,6); }
-        }
-
-        @for $i from 1 through 7 {
-            .col-#{$bp}#{$i}-8 { width: w($i,8); }
-        }
-
-        @for $i from 2 through 8 {
-            .col-#{$bp}#{$i}-10 { width: w($i,10); }
+@mixin generate-cols($cols, $bp: '') {
+    @for $i from 2 through $cols {
+        @for $x from 1 through $i {
+            @if $bp == '' {
+                .col-#{$x}-#{$i} { width: w($x,$i); }
+            } @else {
+                .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
+            }
         }
     }
 }
+
+@each $bp in $bps {
+    $bp-label: nth($bp, 1);
+
+    @if $bp-label == "full" {
+        @include generate-cols(10);
+    } @else {
+        @media (max-width: nth($bp, 2)) {
+            @include generate-cols(10, $bp-label);
+        }
+    }
+}
+
 
 @mixin cols($gutter: $gutter) {
     .cols { margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important; }
