@@ -1909,6 +1909,9 @@ small {
     width: 100%;
   }
 }
+.cols-fixed {
+  /**/
+}
 .cols-fixed:before, .cols-fixed:after {
   content: ' ';
   display: table;

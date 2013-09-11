@@ -52,7 +52,7 @@
 //  ----------------------------------------------------------------------
 //  =COLUMNS - FIXED
 //  ----------------------------------------------------------------------
-.cols-fixed {
+.cols-fixed {  /**/
     @include cf;
     > [class*="col-"] { /*width: auto;*/ width: 100%; float: left; }
 
@@ -147,10 +147,11 @@
 //  ----------------------------------------------------------------------
 @for $i from 1 through 3 {
     .cols-#{$i} {
-        @include column-count($i);
-        @include column-gap($gutter);
+        @include column-count($i); @include column-gap($gutter);
 
-        @include mq($lt-mobile) { @include column-count(1); }
+        @include mq($lt-mobile) {
+            @include column-count(1);
+        }
     }
 
     ul,
