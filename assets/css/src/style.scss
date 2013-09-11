@@ -27,10 +27,7 @@ body { color: $text; font-size: $font-size; line-height: 1; }
 p,
 address,
 blockquote,
-figcaption,
-.copy-block { line-height: $line-height; margin: 0 0 10px; }
-.copy,
-.copy > li { line-height: $line-height; }
+figure { @include copy-block; }
 
 img { max-width: 100%; height: auto; }
 

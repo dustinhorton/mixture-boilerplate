@@ -41,6 +41,11 @@
     > [class*="col-"] { padding-right: $gutter/2; padding-left: $gutter/2; }
 }
 
+@mixin reset-cols {
+    .cols { margin-right: 0 !important; margin-left: 0 !important; }
+    [class*="col-"] { width: auto !important; float: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+}
+
 
 
 
