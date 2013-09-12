@@ -1,7 +1,11 @@
 //  ----------------------------------------------------------------------
 //  =COLUMNS
 //  ----------------------------------------------------------------------
-.cols { box-sizing: border-box; margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important; @include cf; }
+@mixin is-cols($gutter: $gutter) {
+    margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important; @include cf;
+}
+
+.cols { @include is-cols($gutter); }
 .cols > [class*="col-"] { float: left; padding-right: $gutter/2; padding-left: $gutter/2; }
 .cols-rev > [class*="col-"] { float: right; }
 
@@ -31,14 +35,20 @@
 }
 
 
+@mixin col($gutter: $gutter) {
+    > [class*="col-"] { padding-right: $gutter/2; padding-left: $gutter/2; }
+}
+
 @mixin cols($gutter: $gutter) {
-    .cols { margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important; }
-    .cols > [class*="col-"] { padding-right: $gutter/2; padding-left: $gutter/2; }
+  .cols {
+    @include is-cols($gutter);
+    @include col($gutter);
+  }
 }
 
 @mixin cols-this($gutter: $gutter) {
-    margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important;
-    > [class*="col-"] { padding-right: $gutter/2; padding-left: $gutter/2; }
+  @include is-cols($gutter);
+  @include col($gutter);
 }
 
 @mixin reset-cols {
