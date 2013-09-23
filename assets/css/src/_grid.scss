@@ -16,6 +16,7 @@
             @if $bp == '' {
                 .col-#{$x}-#{$i} { width: w($x,$i); }
             } @else {
+                .col-#{$bp}-1 { width: 100%; }  /**/
                 .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
             }
         }
@@ -63,53 +64,50 @@
 //  =COLUMNS - FIXED
 //  ----------------------------------------------------------------------
 @mixin col-reset {
-  width: auto; float: none; margin: 0;
+    width: auto; float: none; margin: 0;
 }
 
 @mixin generate-cols-fixed($total-cols) {
     @for $i from 1 through $total-cols {
-      @for $c from 1 through $total-cols {
-        @if ($c < $total-cols) {
+        @for $c from 1 through $total-cols {
+            @if ($c < $total-cols) {
+                $frac: $c / $total-cols;
+                $right-margin: $full - $full * $frac;
+                $width: $full - $right-margin;
 
-          $frac: $c / $total-cols;
-          $right-margin: $full - $full * $frac;
-          $width: $full - $right-margin;
+                > .col-#{$c}-#{$total-cols} { width: auto; margin-right: $right-margin }
 
-          > .col-#{$c}-#{$total-cols} { width: auto; margin-right: $right-margin }
-
-          .col-fixed {
-            &.col-#{$c}-#{$total-cols} {
-              width: $width;
-              margin-right: 0;
-              margin-left: -$width;
+                .col-fixed {
+                    &.col-#{$c}-#{$total-cols} {
+                        width: $width;
+                        margin-right: 0;
+                        margin-left: -$width;
+                    }
+                }
             }
-          }
         }
-      }
-      $total-cols: $total-cols - 1;
+
+        $total-cols: $total-cols - 1;
     }
 
     @each $bp in $bps {
-      $bp-label: nth($bp, 1);
-      .cols-fixed-#{$bp-label} {
-        @media (max-width: nth($bp, 2)) {
-          > [class*="col-"] { @include col-reset; }
-          > .col-fixed {
-            @include col-reset; margin: $gutter-v 0 0;
-          }
+        $bp-label: nth($bp, 1);
+        .cols-fixed-#{$bp-label} {
+            @media (max-width: nth($bp, 2)) {
+                > [class*="col-"] { @include col-reset; }
+                > .col-fixed { @include col-reset; margin: $gutter-v 0 0; }
+            }
         }
-      }
     }
 }
 
 
 .cols-fixed {
+    .col-fixed {
+        float: right;
+    }
 
-  .col-fixed {
-    float: right;
-  }
-
-  @include generate-cols-fixed(4);
+    @include generate-cols-fixed(4);
 }
 
 
@@ -120,14 +118,15 @@
 //  ----------------------------------------------------------------------
 [class*="col-"].col-solo { width: auto; }
 
-@mixin generate-cols-solo($total-cols) {
-    @for $i from 1 through $total-cols {
-      @for $c from 1 through $total-cols {
-        @if ($c < $total-cols) {
-          .col-#{$c}-#{$total-cols}.col-solo { max-width: $full / $total-cols * $c; }
+@mixin generate-cols-solo($cols-total) {
+    @for $i from 1 through $cols-total {
+        @for $cols from 1 through $cols-total {
+            @if ($cols < $cols-total) {
+                .col-#{$cols}-#{$cols-total}.col-solo { max-width: $full / $cols-total * $cols; }
+            }
         }
-      }
-      $total-cols: $total-cols - 1;
+
+        $cols-total: $cols-total - 1;
     }
 }
 

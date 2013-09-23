@@ -35,7 +35,7 @@ img { max-width: 100%; height: auto; }
 :last-child { margin-bottom: 0; }
 
 
-/*  =FORMS  */
+//  =FORMS
 input,
 textarea { @include placeholder($input-placeholder); }
 
@@ -52,7 +52,7 @@ textarea { @include placeholder($input-placeholder); }
 .container { margin: auto; padding-right: $gutter; padding-left: $gutter; }
 
 .section { margin: 0 0 $gutter-v; }
-.section:last-child { margin-bottom: 0; }
+.section:last-child { margin-bottom: 0; }  /* mixin? */
 
 .content-main {  }
 
@@ -62,20 +62,20 @@ textarea { @include placeholder($input-placeholder); }
 //  ----------------------------------------------------------------------
 //  =COMPONENTS
 //  ----------------------------------------------------------------------
-/*  =BUTTONS  */
+//  =BUTTONS
 .btn-primary {  }
 
 
 
 
-/*  ----------------------------------------------------------------------
-    =PARTIALS
-    ----------------------------------------------------------------------  */
-/*  =HEADER  */
+//  ----------------------------------------------------------------------
+//  =PARTIALS
+//  ----------------------------------------------------------------------
+//  =HEADER
 .header-main {  }
 
 
-/*  =FOOTER  */
+//  =FOOTER
 .footer-main {  }
 
 
