@@ -12,11 +12,14 @@
 
 @mixin generate-cols($cols, $bp: '') {
     @for $i from 2 through $cols {
+        @if $i == 2 {
+            .col-#{$bp}-1 { width: 100%; }
+        }
+
         @for $x from 1 through $i {
             @if $bp == '' {
                 .col-#{$x}-#{$i} { width: w($x,$i); }
             } @else {
-                .col-#{$bp}-1 { width: 100%; }  /**/
                 .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
             }
         }
@@ -154,9 +157,7 @@
 //  =SECTIONS
 //  ----------------------------------------------------------------------
 @each $bp in $bps {
-    $bp: nth($bp, 1);
-
-    .section-#{$bp} {
-        @include mq(#{$bp}) { margin: 0 0 $gutter-v; }
+    .section-#{nth($bp, 1)} {
+        @include mq(#{nth($bp, 2)}) { margin: 0 0 $gutter-v; }
     }
 }

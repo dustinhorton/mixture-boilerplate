@@ -12,6 +12,8 @@ javascripts_dir = "assets/js" # update to the path of your script files.
 
 relative_assets = true
 
+output_style = :expanded
+
 line_comments = false # if debugging (or using Mixture chrome extension - set this to true)
 cache = true
 color_output = false # required for Mixture

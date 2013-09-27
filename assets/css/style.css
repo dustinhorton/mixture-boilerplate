@@ -390,6 +390,10 @@ small {
   float: right;
 }
 
+.col--1 {
+  width: 100%;
+}
+
 .col-1-2 {
   width: 50%;
 }
@@ -607,6 +611,10 @@ small {
 }
 
 @media (max-width: 1279px) {
+  .col-lt-full-1 {
+    width: 100%;
+  }
+
   .col-lt-full-1-2 {
     width: 50%;
   }
@@ -824,6 +832,10 @@ small {
   }
 }
 @media (max-width: 768px) {
+  .col-tablet-1 {
+    width: 100%;
+  }
+
   .col-tablet-1-2 {
     width: 50%;
   }
@@ -1041,6 +1053,10 @@ small {
   }
 }
 @media (max-width: 767px) {
+  .col-lt-tablet-1 {
+    width: 100%;
+  }
+
   .col-lt-tablet-1-2 {
     width: 50%;
   }
@@ -1258,6 +1274,10 @@ small {
   }
 }
 @media (max-width: 568px) {
+  .col-mobile-1 {
+    width: 100%;
+  }
+
   .col-mobile-1-2 {
     width: 50%;
   }
@@ -1475,6 +1495,10 @@ small {
   }
 }
 @media (max-width: 567px) {
+  .col-lt-mobile-1 {
+    width: 100%;
+  }
+
   .col-lt-mobile-1-2 {
     width: 50%;
   }
@@ -1692,6 +1716,10 @@ small {
   }
 }
 @media (max-width: 320px) {
+  .col-mobile-sm-1 {
+    width: 100%;
+  }
+
   .col-mobile-sm-1-2 {
     width: 50%;
   }
@@ -2137,43 +2165,43 @@ small {
   column-gap: 20px;
 }
 
-@media (max-width: full) {
+@media (max-width: 1280px) {
   .section-full {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: lt-full) {
+@media (max-width: 1279px) {
   .section-lt-full {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: tablet) {
+@media (max-width: 768px) {
   .section-tablet {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: lt-tablet) {
+@media (max-width: 767px) {
   .section-lt-tablet {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: mobile) {
+@media (max-width: 568px) {
   .section-mobile {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: lt-mobile) {
+@media (max-width: 567px) {
   .section-lt-mobile {
     margin: 0 0 50px;
   }
 }
 
-@media (max-width: mobile-sm) {
+@media (max-width: 320px) {
   .section-mobile-sm {
     margin: 0 0 50px;
   }
@@ -2216,7 +2244,6 @@ img {
   margin-bottom: 0;
 }
 
-/*  =FORMS  */
 input:-moz-placeholder,
 textarea:-moz-placeholder {
   color: rgba(0, 0, 0, 0.75);
@@ -2245,9 +2272,4 @@ textarea::-webkit-input-placeholder {
   margin-bottom: 0;
 }
 
-/*  =BUTTONS  */
-/*  ----------------------------------------------------------------------
-    =PARTIALS
-    ----------------------------------------------------------------------  */
-/*  =HEADER  */
-/*  =FOOTER  */
+/* mixin? */
