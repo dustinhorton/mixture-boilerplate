@@ -1,8 +1,7 @@
-@import "compass";
-@import "reset";
-@import "plugins";
-@import "sass";
-@import "grid";
+@import 'compass'
+      , 'reset'
+      , 'sass'
+      , 'grid';
 
 
 
@@ -11,6 +10,7 @@
 //  =BASE
 //  ----------------------------------------------------------------------
 body, input, textarea, select, button { font-family: $fonts; /*-webkit-font-smoothing: antialiased;*/ }
+body, input, select, button { line-height: 1; }  /**/
 body { color: $text; font-size: $font-size; line-height: 1; }
 
 %h-base { color: $text; }
@@ -21,18 +21,18 @@ body { color: $text; font-size: $font-size; line-height: 1; }
 %h5 { @extend %h-base; }
 %h6 { @extend %h-base; }
 @for $i from 1 through 6 {
-    h#{$i} { @extend %h#{$i}; }
+    h#{$i},
+    .h#{$i} { @extend %h#{$i}; }
 }
 
 p,
 address,
 blockquote,
+dl,
+dd,
 figure { @include copy-block; }
 
 img { max-width: 100%; height: auto; }
-
-:first-child { margin-top: 0; }
-:last-child { margin-bottom: 0; }
 
 
 //  =FORMS

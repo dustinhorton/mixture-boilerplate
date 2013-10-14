@@ -5,26 +5,25 @@ $text: #000;
 $input-placeholder: rgba($text,0.75);
 
 $fonts: helvetica neue, helvetica, arial, sans-serif;
-$font-size: 13px;
+$font-size:   15px;
 $line-height: 1.35;
-
-$radius: 5px;
 
 $dur: 150ms;
 $ease: ease-in-out;
 $dur-ease: $dur $ease;
 
-$fb:        #3b5998;
-$twitter:   #00aced;
-$pinterest: #cb2027;
-$socials: fb $fb, twitter $twitter, pinterest $pinterest;
+$radius: 5px;
 
 $gutter:   20px;
 $gutter-v: 50px;
-$block-s: 10px;
-$modal-s: 10px;
+$block-s:  10px;
 
-$full:       1280px;
+$modal-s:  10px;
+
+$full:       1240px + $gutter * 2;
+
+
+//  =FRAMEWORK
 $gt-full:    $full + 1;
 $lt-full:    $full - 1;
 $desktop:    960px;
@@ -35,6 +34,19 @@ $mobile:     568px;
 $lt-mobile:  $mobile - 1;
 $mobile-sm:  320px;
 $bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile $mobile, lt-mobile $lt-mobile, mobile-sm $mobile-sm;
+
+
+$fb:        #3b5998;
+$twitter:   #00aced;
+$pinterest: #cb2027;
+$socials: fb $fb, twitter $twitter, pinterest $pinterest;
+
+
+$thin:  100;
+$xlt:   200;
+$lt:    300;
+$med:   500;
+$sbold: 600;
 
 
 
@@ -65,8 +77,9 @@ $bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile
 
 
 //  ----------------------------------------------------------------------
-//  =MIXINS - FRAMEWORK
+//  =MIXINS
 //  ----------------------------------------------------------------------
+//  =FRAMEWORK
 @mixin bg-gradient($start, $end, $orientation: vertical) {
     background: mix($start,$end);
     @include background(linear-gradient($start,$end));
@@ -238,6 +251,12 @@ $bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile
 @mixin reset-font {
     color: $text; font: $font-size/#{$line-height} $fonts; text-transform: none;
 }
+
+
+@mixin table-full {
+    width: 100%;
+}
+.table-full { @include table-full; }
 
 
 @mixin text-break {
