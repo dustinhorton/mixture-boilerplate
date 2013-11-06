@@ -1,3 +1,5 @@
+require 'sass-globbing'
+
 # Compass configuration file.
 
 # We also support plugins and frameworks, please read the docs http://docs.mixture.io/preprocessors#compass

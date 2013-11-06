@@ -70,18 +70,18 @@
     width: auto; float: none; margin: 0;
 }
 
-@mixin generate-cols-fixed($total-cols) {
-    @for $i from 1 through $total-cols {
-        @for $c from 1 through $total-cols {
-            @if ($c < $total-cols) {
-                $frac: $c / $total-cols;
-                $right-margin: $full - $full * $frac;
-                $width: $full - $right-margin;
+@mixin generate-cols-fixed($cols-total) {
+    @for $i from 1 through $cols-total {
+        @for $cols from 1 through $cols-total {
+            @if ($cols < $cols-total) {
+                $ratio: $cols / $cols-total;
+                $sidebar-total: $full - $full * $ratio;
+                $width: $full - $sidebar-total;
 
-                > .col-#{$c}-#{$total-cols} { width: auto; margin-right: $right-margin }
+                > .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
 
                 .col-fixed {
-                    &.col-#{$c}-#{$total-cols} {
+                    &.col-#{$cols}-#{$cols-total} {
                         width: $width;
                         margin-right: 0;
                         margin-left: -$width;
@@ -90,7 +90,7 @@
             }
         }
 
-        $total-cols: $total-cols - 1;
+        $cols-total: $cols-total - 1;
     }
 
     @each $bp in $bps {
@@ -105,13 +105,9 @@
 }
 
 
-.cols-fixed {
-    .col-fixed {
-        float: right;
-    }
+@include generate-cols-fixed(4);
 
-    @include generate-cols-fixed(4);
-}
+.cols-fixed .col-fixed { float: right; }
 
 
 
@@ -149,6 +145,11 @@
 @for $i from 1 through 4 {
     .cols-#{$i} { @include cols-css($i); }
 }
+
+@mixin col-unit {
+    width: 100%; display: inline-block;
+}
+.col-unit { @include col-unit; }
 
 
 

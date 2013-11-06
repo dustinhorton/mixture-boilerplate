@@ -40,6 +40,11 @@ input, textarea, select, button { border: 0; font-size: 100%; margin: 0; outline
 input, textarea, select { width: 100%; }
 label, select, button { cursor: pointer; }
 input, select { vertical-align: middle; }
+input[type="checkbox"],
+input[type="radio"] {
+    cursor: pointer;
+    &:checked { cursor: default; }
+}
 input[type="checkbox"] { vertical-align: bottom; }
 input[type="radio"] { vertical-align: text-bottom; }
 textarea { overflow: auto; resize: vertical; vertical-align: top; }

@@ -8,17 +8,17 @@ $fonts: helvetica neue, helvetica, arial, sans-serif;
 $font-size:   15px;
 $line-height: 1.35;
 
-$dur: 150ms;
-$ease: ease-in-out;
-$dur-ease: $dur $ease;
-
-$radius: 5px;
-
 $gutter:   20px;
 $gutter-v: 50px;
 $block-s:  10px;
 
 $modal-s:  10px;
+
+$radius: 5px;
+
+$dur: 150ms;
+$ease: ease-in-out;
+$dur-ease: $dur $ease;
 
 $full:       1240px + $gutter * 2;
 
@@ -217,6 +217,13 @@ $sbold: 600;
     > .media-content { width: 100%; }
     &.media-top > .media-content { vertical-align: top; }
     &.media-bottom > .media-content { vertical-align: bottom; }
+
+    &.rev {
+        > .media-media {
+            padding-right: 0;
+            padding-left: $gutter;
+        }
+    }
 }
 .media-centered { @include media-centered; }
 
@@ -250,6 +257,11 @@ $sbold: 600;
 
 @mixin reset-font {
     color: $text; font: $font-size/#{$line-height} $fonts; text-transform: none;
+}
+
+@mixin reset-margins {
+    &:first-child { margin-top: 0; }
+    &:last-child { margin-bottom: 0; }
 }
 
 
@@ -366,20 +378,18 @@ $sbold: 600;
 .show { display: inherit; }
 
 @each $bp in $bps {
-    $bp: nth($bp, 1);
-
-    .show-hide-#{$bp} {
-        @include mq(#{$bp}) { display: none; }
+    .show-hide-#{nth($bp,1)} {
+        @include mq(#{nth($bp,2)}) {
+            display: none;
+        }
     }
-}
 
-@each $bp in $bps {
-    $bp: nth($bp, 1);
-
-    .hide-show-#{$bp} {
+    .hide-show-#{nth($bp,1)} {
         display: none !important;
 
-        @include mq(#{$bp}) { display: inherit !important; }
+        @include mq(#{nth($bp,2)}) {
+            display: inherit !important;
+        }
     }
 }
 

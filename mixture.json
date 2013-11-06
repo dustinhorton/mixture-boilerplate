@@ -18,5 +18,8 @@
   "type": "mixture",
   "useCompass": true,
   "followLeader": false,
-  "optimiseImages": false
+  "optimiseImages": false,
+  "sass" : {
+    "globbing": true
+  }
 }
