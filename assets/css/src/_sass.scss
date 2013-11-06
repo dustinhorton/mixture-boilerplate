@@ -1,29 +1,43 @@
 //  ----------------------------------------------------------------------
+//  =VARS - DEFAULTS
+//  ----------------------------------------------------------------------
+//  =TYPE
+$text:        #000 !default;
+$fonts:       helvetica neue, helvetica, arial, sans-serif !default;
+$font-size:   15px !default;
+$line-height: 1.35 !default;
+$placeholder: rgba($text,0.75) !default;
+
+
+//  =GRID
+$cols:             3     !default;
+$cols-total:       $cols !default;
+$cols-fixed-total: $cols !default;
+$cols-css-total:   $cols !default;
+
+
+//  =SPACING
+$gutter:   20px !default;
+$gutter-v: 50px !default;
+$block-s:  10px !default;
+$modal-s:  10px !default;
+
+
+//  =VIEWPORTS
+$full:  960px + $gutter * 2 !default;
+
+
+//  =ANIMATION
+$dur:  150ms !default;
+$ease: ease-in-out !default;
+
+
+
+
+//  ----------------------------------------------------------------------
 //  =VARS
 //  ----------------------------------------------------------------------
-$text: #000;
-$input-placeholder: rgba($text,0.75);
-
-$fonts: helvetica neue, helvetica, arial, sans-serif;
-$font-size:   15px;
-$line-height: 1.35;
-
-$gutter:   20px;
-$gutter-v: 50px;
-$block-s:  10px;
-
-$modal-s:  10px;
-
-$radius: 5px;
-
-$dur: 150ms;
-$ease: ease-in-out;
-$dur-ease: $dur $ease;
-
-$full:       1240px + $gutter * 2;
-
-
-//  =FRAMEWORK
+//  =VIEWPORTS
 $gt-full:    $full + 1;
 $lt-full:    $full - 1;
 $desktop:    960px;
@@ -36,17 +50,23 @@ $mobile-sm:  320px;
 $bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile $mobile, lt-mobile $lt-mobile, mobile-sm $mobile-sm;
 
 
+//  =COLORS
 $fb:        #3b5998;
 $twitter:   #00aced;
 $pinterest: #cb2027;
 $socials: fb $fb, twitter $twitter, pinterest $pinterest;
 
 
+//  =WEIGHTS
 $thin:  100;
 $xlt:   200;
 $lt:    300;
 $med:   500;
 $sbold: 600;
+
+
+//  =ANIMATION
+$dur-ease: $dur $ease;
 
 
 
@@ -237,11 +257,11 @@ $sbold: 600;
 }
 
 
-@mixin placeholder($color: $input-placeholder) {
+@mixin placeholder($color: $placeholder) {
     &:-moz-placeholder { color: $color; }
     &::-webkit-input-placeholder { color: $color; }
 }
-.placeholder { color: $input-placeholder; }
+.placeholder { color: $placeholder; }
 
 
 @mixin pull($dir: right) {
@@ -399,10 +419,6 @@ $sbold: 600;
 //  ----------------------------------------------------------------------
 //  =FUNCTIONS
 //  ----------------------------------------------------------------------
-@function em ($px, $font-size: $font-size) {
-    @return ($px / $font-size) * 1em;
-}
-
 @function w ($target, $context) {
     @return ($target / $context) * 100%;
 }

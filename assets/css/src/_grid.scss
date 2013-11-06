@@ -27,13 +27,11 @@
 }
 
 @each $bp in $bps {
-    $bp-label: nth($bp, 1);
-
-    @if $bp-label == "full" {
-        @include generate-cols(10);
+    @if nth($bp,1)== "full" {
+        @include generate-cols($cols-total);
     } @else {
-        @media (max-width: nth($bp, 2)) {
-            @include generate-cols(10, $bp-label);
+        @media (max-width: nth($bp,2)) {
+            @include generate-cols($cols-total, nth($bp,1));
         }
     }
 }
@@ -70,6 +68,8 @@
     width: auto; float: none; margin: 0;
 }
 
+.cols-fixed .col-fixed { float: right; }
+
 @mixin generate-cols-fixed($cols-total) {
     @for $i from 1 through $cols-total {
         @for $cols from 1 through $cols-total {
@@ -80,13 +80,7 @@
 
                 > .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
 
-                .col-fixed {
-                    &.col-#{$cols}-#{$cols-total} {
-                        width: $width;
-                        margin-right: 0;
-                        margin-left: -$width;
-                    }
-                }
+                .col-fixed.col-#{$cols}-#{$cols-total} { width: $width; margin-right: 0; margin-left: -$width; }
             }
         }
 
@@ -94,9 +88,8 @@
     }
 
     @each $bp in $bps {
-        $bp-label: nth($bp, 1);
-        .cols-fixed-#{$bp-label} {
-            @media (max-width: nth($bp, 2)) {
+        .cols-fixed-#{nth($bp,1)} {
+            @media (max-width: nth($bp,2)) {
                 > [class*="col-"] { @include col-reset; }
                 > .col-fixed { @include col-reset; margin: $gutter-v 0 0; }
             }
@@ -105,9 +98,7 @@
 }
 
 
-@include generate-cols-fixed(4);
-
-.cols-fixed .col-fixed { float: right; }
+@include generate-cols-fixed($cols-fixed-total);
 
 
 
@@ -129,7 +120,7 @@
     }
 }
 
-@include generate-cols-solo(4);
+@include generate-cols-solo($cols-total);
 
 
 
@@ -142,7 +133,7 @@
     @include column-gap($gutter);
 }
 
-@for $i from 1 through 4 {
+@for $i from 1 through $cols-css-total {
     .cols-#{$i} { @include cols-css($i); }
 }
 
@@ -158,7 +149,7 @@
 //  =SECTIONS
 //  ----------------------------------------------------------------------
 @each $bp in $bps {
-    .section-#{nth($bp, 1)} {
-        @include mq(#{nth($bp, 2)}) { margin: 0 0 $gutter-v; }
+    .section-#{nth($bp,1)} {
+        @include mq(#{nth($bp,2)}) { margin: 0 0 $gutter-v; }
     }
 }

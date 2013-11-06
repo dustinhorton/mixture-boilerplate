@@ -1,6 +1,7 @@
 @import 'compass'
       , 'reset'
       , 'plugin/*'
+      , 'vars'
       , 'sass'
       , 'grid';
 
@@ -10,9 +11,12 @@
 //  ----------------------------------------------------------------------
 //  =BASE
 //  ----------------------------------------------------------------------
-body, input, textarea, select, button { font-family: $fonts; /*-webkit-font-smoothing: antialiased;*/ }
-body, input, select, button { line-height: 1; }  /**/
-body { color: $text; font-size: $font-size; line-height: 1; }
+body, input, textarea, select, button { font-family: $fonts; }
+body, select, button { line-height: 1; }
+body {
+    color: $text; font-size: $font-size;
+    .lt-ie9 & { width: $full; margin: auto; }
+}
 
 %h-base { color: $text; }
 %h1 { @extend %h-base; }
@@ -38,7 +42,7 @@ img { max-width: 100%; height: auto; }
 
 //  =FORMS
 input,
-textarea { @include placeholder($input-placeholder); }
+textarea { @include placeholder($placeholder); }
 
 
 
@@ -46,14 +50,9 @@ textarea { @include placeholder($input-placeholder); }
 //  ----------------------------------------------------------------------
 //  =SCAFFOLDING
 //  ----------------------------------------------------------------------
-.container-main {
-    .lt-ie9 & { width: $full; margin: auto; }
-}
-
 .container { margin: auto; padding-right: $gutter; padding-left: $gutter; }
 
-.section { margin: 0 0 $gutter-v; }
-.section:last-child { margin-bottom: 0; }  /* mixin? */
+.section { margin: 0 0 $gutter-v; @include reset-margins; }
 
 .content-main {  }
 

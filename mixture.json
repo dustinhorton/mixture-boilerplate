@@ -9,7 +9,7 @@
   "projectDescription": "A boilerplate with Sass & Compass.",
   "projectName": "Boilerplate",
   "publishedId": null,
-  "serverHostname": null,
+  "serverHostname": "localhost",
   "serverPort": null,
   "simpleModePartnerServer": null,
   "templateDefaultLayout": "layout",
