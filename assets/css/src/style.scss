@@ -1,4 +1,10 @@
-@import 'compass'
+@import 'compass/css3/appearance'
+      , 'compass/css3/box-sizing'
+      , 'compass/css3/columns'
+      , 'compass/css3/images'
+      , 'compass/css3/opacity'
+      , 'compass/css3/transform'
+      , 'compass/css3/transition'
       , 'reset'
       , 'plugin/*'
       , 'vars'
@@ -43,6 +49,7 @@ img { max-width: 100%; height: auto; }
 //  =FORMS
 input,
 textarea { @include placeholder($placeholder); }
+select { @includ appearance(none); text-indent: 1px; text-overflow: ''; }
 
 
 
@@ -50,11 +57,7 @@ textarea { @include placeholder($placeholder); }
 //  ----------------------------------------------------------------------
 //  =SCAFFOLDING
 //  ----------------------------------------------------------------------
-.container { margin: auto; padding-right: $gutter; padding-left: $gutter; }
-
 .section { margin: 0 0 $gutter-v; @include reset-margins; }
-
-.content-main {  }
 
 
 
@@ -84,3 +87,13 @@ textarea { @include placeholder($placeholder); }
 //  ----------------------------------------------------------------------
 //  =VIEWS
 //  ----------------------------------------------------------------------
+
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =STATE
+//  ----------------------------------------------------------------------
+.disable-hover,
+.disable-hover * { pointer-events: none !important; }

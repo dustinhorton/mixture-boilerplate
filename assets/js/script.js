@@ -1186,3 +1186,17 @@ var $win = $(window),
 
 
 
+//  ----------------------------------------------------------------------
+//  =SCROLL
+//  ----------------------------------------------------------------------
+var t;
+
+window.addEventListener('scroll', function() {
+  clearTimeout(t);
+
+  if (!body.classList.contains('disable-hover')) body.classList.add('disable-hover')
+
+  t = setTimeout(function(){
+    body.classList.remove('disable-hover')
+  }, 125);
+}, false);

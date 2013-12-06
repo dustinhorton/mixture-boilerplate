@@ -20,11 +20,12 @@ $cols-css-total:   $cols !default;
 $gutter:   20px !default;
 $gutter-v: 50px !default;
 $block-s:  10px !default;
+$list-p: 1.35em !default;
 $modal-s:  10px !default;
 
 
-//  =VIEWPORTS
-$full:  960px + $gutter * 2 !default;
+//  =CONTENT
+$content: 960px !default;
 
 
 //  =ANIMATION
@@ -38,6 +39,7 @@ $ease: ease-in-out !default;
 //  =VARS
 //  ----------------------------------------------------------------------
 //  =VIEWPORTS
+$full:       $content + $gutter * 2;
 $gt-full:    $full + 1;
 $lt-full:    $full - 1;
 $desktop:    960px;
@@ -107,13 +109,19 @@ $dur-ease: $dur $ease;
 }
 
 
-@mixin btn-block {
+@mixin block {
     margin: 0 0 $block-s;
+}
+.block { @include block; }
+
+
+@mixin btn-block {
+    @include block;
 }
 .btn-block { @include btn-block; }
 
-@mixin btn-full {
-    width: 100%; display: block; text-align: left;
+@mixin btn-full($align: left) {
+    width: 100%; display: block; text-align: $align;
 }
 .btn-full { @include btn-full; }
 
@@ -129,20 +137,21 @@ $dur-ease: $dur $ease;
 }
 
 
-@mixin container {  /**/
-    padding-right: $gutter; padding-left: $container;
+@mixin container {
+    margin: auto; padding: 0 $gutter;
 }
+.container { @include container; }
 
 
-@mixin copy {  /**/
+@mixin copy {
     line-height: $line-height;
-
-    > li { line-height: $line-height; }  /**/
+    > li { margin: 0 0 $block-s; }
 }
 .copy { @include copy; }
 
 @mixin copy-block {
-    line-height: $line-height; margin: 0 0 $block-s;  /**/
+    @include block;
+    @include copy;
 }
 .copy-block { @include copy-block; }
 
@@ -160,6 +169,12 @@ $dur-ease: $dur $ease;
 }
 
 
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: rem($size);
+}
+
+
 @mixin hidden {
     width: 1px; height: 1px; border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute;
 }
@@ -167,17 +182,17 @@ $dur-ease: $dur $ease;
 
 
 @mixin list-bulleted {
-    list-style: disc; padding-left: 1.35em;  /**/
+    list-style: disc; padding-left: $list-p;
 }
 .list-bulleted { @include list-bulleted; }
 
 @mixin list-numbered {
-    list-style: decimal; padding-left: 1.35em;  /**/
+    list-style: decimal; padding-left: $list-p;
 }
 .list-numbered { @include list-numbered; }
 
 @mixin list-alpha {
-    list-style: lower-alpha; padding-left: 1.35em;  /**/
+    list-style: lower-alpha; padding-left: $list-p;
 }
 .list-alpha { @include list-alpha; }
 
@@ -282,6 +297,12 @@ $dur-ease: $dur $ease;
 @mixin reset-margins {
     &:first-child { margin-top: 0; }
     &:last-child { margin-bottom: 0; }
+}
+
+
+@mixin img-s($img) {
+    width: image-width($img);
+    height: image-height($img);
 }
 
 
@@ -421,4 +442,8 @@ $dur-ease: $dur $ease;
 //  ----------------------------------------------------------------------
 @function w ($target, $context) {
     @return ($target / $context) * 100%;
+}
+
+@function rem ($num) {
+    @return #{$num / $font-size}rem;
 }
