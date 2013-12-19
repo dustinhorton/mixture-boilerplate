@@ -181,6 +181,17 @@ $dur-ease: $dur $ease;
 .hidden { @include hidden; }
 
 
+@mixin img-block {
+    @include block;
+}
+.img-block { @include img-block; }
+
+@mixin img-full {
+    width: 100%; max-width: none;
+}
+.img-full { @include img-full; }
+
+
 @mixin list-bulleted {
     list-style: disc; padding-left: $list-p;
 }

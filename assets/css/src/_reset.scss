@@ -25,7 +25,7 @@ address, cite { font-style: normal; }
 blockquote { quotes: none; }
 blockquote:before, blockquote:after { content: ''; content: none; }
 
-iframe { display: block; }
+iframe { width: 100%; display: block; }
 
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 
