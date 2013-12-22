@@ -17,7 +17,7 @@ ul, ol { list-style: none; }
 
 img { vertical-align: middle; }
 
-table { border-collapse: collapse; border-spacing: 0; }
+table { width: 100%; border-collapse: collapse; border-spacing: 0; }
 th { font-weight: normal; text-align: left; }
 
 address, cite { font-style: normal; }
@@ -41,10 +41,7 @@ input, textarea, select { width: 100%; }
 label, select, button { cursor: pointer; }
 input, select { vertical-align: middle; }
 input[type="checkbox"],
-input[type="radio"] {
-    cursor: pointer;
-    &:checked { cursor: default; }
-}
+input[type="radio"] { cursor: pointer; }
 input[type="checkbox"] { vertical-align: bottom; }
 input[type="radio"] { vertical-align: text-bottom; }
 textarea { overflow: auto; resize: vertical; vertical-align: top; }

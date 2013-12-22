@@ -49,7 +49,7 @@ img { max-width: 100%; height: auto; }
 //  =FORMS
 input,
 textarea { @include placeholder($placeholder); }
-select { @includ appearance(none); text-indent: 1px; text-overflow: ''; }
+select { @include appearance(none); text-indent: 1px; text-overflow: ''; }
 
 
 

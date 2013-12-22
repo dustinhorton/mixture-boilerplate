@@ -88,10 +88,10 @@ $dur-ease: $dur $ease;
 //@each $font in  {
 //    @font-face {
 //          font-family: $font; font-weight: normal;
-//          src: url('/css/font/#{$font}.eot');
-//          src: url('/css/font/#{$font}.eot?') format('eot'),
-//               url('/css/font/#{$font}.woff') format('woff'),
-//               url('/css/font/#{$font}.ttf')  format('truetype')
+//          src: url('/font/#{$font}.eot');
+//          src: url('/font/#{$font}.eot?') format('eot'),
+//               url('/font/#{$font}.woff') format('woff'),
+//               url('/font/#{$font}.ttf')  format('truetype')
 //    }
 //}
 
@@ -102,10 +102,15 @@ $dur-ease: $dur $ease;
 //  =MIXINS
 //  ----------------------------------------------------------------------
 //  =FRAMEWORK
-@mixin bg-gradient($start, $end, $orientation: vertical) {
+@mixin bg-gradient($start, $end, $orientation: horizontal) {
     background: mix($start,$end);
-    @include background(linear-gradient($start,$end));
-    @include filter-gradient($start,$end,$orientation);
+    @include background(filter-gradient($start,$end,$orientation));
+    @if $orientation == 'horizontal' {
+        $orientation = 'left'
+    } @else {
+        $orientation = 'top'
+    }
+    @include background(linear-gradient($orientation, $start, $end));
 }
 
 
@@ -138,7 +143,7 @@ $dur-ease: $dur $ease;
 
 
 @mixin container {
-    margin: auto; padding: 0 $gutter;
+    max-width: $full; margin: auto; padding: 0 $gutter;
 }
 .container { @include container; }
 
