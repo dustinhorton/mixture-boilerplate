@@ -138,7 +138,7 @@
 }
 
 @mixin col-unit {
-    width: 100%; display: inline-block;
+    /*width: 100%;*/ break-inside: avoid; /*display: inline-block;*/
 }
 .col-unit { @include col-unit; }
 
