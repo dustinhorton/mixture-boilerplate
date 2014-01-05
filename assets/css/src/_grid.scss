@@ -5,9 +5,13 @@
     margin-right: -$gutter/2 !important; margin-left: -$gutter/2 !important; @include cf;
 }
 
+@mixin col {
+    min-height: 1px;
+}
+
 .cols { @include is-cols($gutter); }
-.cols > [class*="col-"] { float: left; padding-right: $gutter/2; padding-left: $gutter/2; }
-.cols-rev > [class*="col-"] { float: right; }
+.cols > [class*="col-"] { @include col; float: left; padding-right: $gutter/2; padding-left: $gutter/2; }
+.cols-rev > [class*="col-"] { @include col; float: right; }
 
 
 @mixin generate-cols($cols, $bp: '') {
