@@ -142,7 +142,9 @@
 }
 
 @mixin col-unit {
-    /*width: 100%;*/ break-inside: avoid; /*display: inline-block;*/
+    -webkit-column-break-inside: avoid;
+                   break-inside: avoid;
+    /*width: 100%; display: inline-block;*/
 }
 .col-unit { @include col-unit; }
 
