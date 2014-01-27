@@ -20,7 +20,7 @@ $cols-css-total:   $cols !default;
 $gutter:   20px !default;
 $gutter-v: 50px !default;
 $block-s:  10px !default;
-$list-p: 1.35em !default;
+$list-p:   1.35em !default;
 $modal-s:  10px !default;
 
 
@@ -39,7 +39,7 @@ $ease: ease-in-out !default;
 //  =VARS
 //  ----------------------------------------------------------------------
 //  =VIEWPORTS
-in-
+$full:       $content + $gutter * 2;
 $gt-full:    $full + 1;
 $lt-full:    $full - 1;
 $desktop:    960px;
