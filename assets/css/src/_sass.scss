@@ -65,6 +65,7 @@ $xlt:   200;
 $lt:    300;
 $med:   500;
 $sbold: 600;
+$xbold: 800;
 
 
 //  =ANIMATION
@@ -76,7 +77,8 @@ $dur-ease: $dur $ease;
 //  ----------------------------------------------------------------------
 //  =SPRITES
 //  ----------------------------------------------------------------------
-//@import 'i/s/*.png';
+//$s-spacing: 2px;
+//@import 's/*.png';
 //@include all-s-sprites(true);
 
 
@@ -290,8 +292,16 @@ $dur-ease: $dur $ease;
 @mixin placeholder($color: $placeholder) {
     &:-moz-placeholder { color: $color; }
     &::-webkit-input-placeholder { color: $color; }
+    &:-ms-input-placeholder { color: $color; }
 }
 .placeholder { color: $placeholder; }
+
+
+@mixin prefix($prop, $val) {
+    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+        #{$vendor}#{$prop}: #{$val};
+    }
+}
 
 
 @mixin pull($dir: right) {
@@ -384,7 +394,7 @@ $dur-ease: $dur $ease;
     }
 
     @else if $bp == retina {
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
             @content;
         }
     }
@@ -456,7 +466,11 @@ $dur-ease: $dur $ease;
 //  =FUNCTIONS
 //  ----------------------------------------------------------------------
 @function w ($target, $context) {
-    @return ($target / $context) * 100%;
+    @return $target / $context * 100%;
+}
+
+@function aspect-radio($w, $h) {
+    @return $h / $w * 100%;
 }
 
 @function rem ($num) {
