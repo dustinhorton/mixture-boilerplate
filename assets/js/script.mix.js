@@ -5,7 +5,7 @@
 @import 'lib/images-loaded-3.0.2.js';
 
 @import 'plugin/equalize-custom.jquery.js';
-@import 'plugin/throttle-1.1.jquery.min.js'
+@import 'plugin/throttle-1.1.jquery.min.js';
 
 
 
