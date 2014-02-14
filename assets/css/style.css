@@ -44,6 +44,7 @@ img {
 }
 
 table {
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -121,10 +122,6 @@ input[type="checkbox"],
 input[type="radio"] {
   cursor: pointer;
 }
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
-  cursor: default;
-}
 
 input[type="checkbox"] {
   vertical-align: bottom;
@@ -178,6 +175,12 @@ small {
   width: 100%;
   display: block;
   text-align: left;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px;
 }
 
 .copy {
@@ -240,15 +243,9 @@ small {
 
 .ir {
   /**/
-  /*background-color: transparent;*/
-  border: 0;
   overflow: hidden;
-}
-.ir:before {
-  content: '';
-  width: 0;
-  height: 150%;
-  display: block;
+  text-indent: 100%;
+  white-space: nowrap;
 }
 
 .media-centered {
@@ -424,12 +421,14 @@ small {
 }
 
 .cols > [class*="col-"] {
+  min-height: 1px;
   float: left;
   padding-right: 10px;
   padding-left: 10px;
 }
 
 .cols-rev > [class*="col-"] {
+  min-height: 1px;
   float: right;
 }
 
@@ -798,8 +797,9 @@ small {
 }
 
 .col-unit {
-  width: 100%;
-  display: inline-block;
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
+  /*width: 100%; display: inline-block;*/
 }
 
 @media (max-width: 1000px) {
@@ -902,9 +902,15 @@ input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.75);
 }
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.75);
+}
 
 select {
-  @includ appearance(none);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   text-indent: 1px;
   text-overflow: '';
 }
@@ -917,9 +923,4 @@ select {
 }
 .section:last-child {
   margin-bottom: 0;
-}
-
-.disable-hover,
-.disable-hover * {
-  pointer-events: none !important;
 }
