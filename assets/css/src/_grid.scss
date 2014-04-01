@@ -12,6 +12,7 @@
 .cols { @include is-cols($gutter); }
 .cols > [class*="col-"] { @include col; float: left; padding-right: $gutter/2; padding-left: $gutter/2; }
 .cols-rev > [class*="col-"] { @include col; float: right; }
+[class*="cols-"] > .col-rev { float: right; }
 
 
 @mixin generate-cols($cols, $bp: '') {
@@ -82,7 +83,7 @@
                 $sidebar-total: $full - $full * $ratio;
                 $width: $full - $sidebar-total;
 
-                > .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
+                .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
 
                 .col-fixed.col-#{$cols}-#{$cols-total} { width: $width; margin-right: 0; margin-left: -$width; }
             }

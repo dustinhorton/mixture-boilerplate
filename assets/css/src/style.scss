@@ -6,7 +6,7 @@
       , 'compass/css3/transform'
       , 'compass/css3/transition'
       , 'reset'
-      , 'plugin/*'
+      , 'vendor/**/*'
       , 'vars'
       , 'sass'
       , 'grid';
@@ -24,17 +24,19 @@ body {
     .lt-ie9 & { width: $full; margin: auto; }
 }
 
-%h-base { color: $text; }
-%h1 { @extend %h-base; }
-%h2 { @extend %h-base; }
-%h3 { @extend %h-base; }
-%h4 { @extend %h-base; }
-%h5 { @extend %h-base; }
-%h6 { @extend %h-base; }
 @for $i from 1 through 6 {
-    h#{$i},
-    .h#{$i} { @extend %h#{$i}; }
+  %h#{$i} { @extend %h;      }
+  h#{$i}  { @extend %h#{$i}; }
+  .h#{$i} { @extend %h#{$i}; @include reset-type-headline; }
 }
+
+%h  { color: $text; font-weight: $h-font-weight; }
+%h1 { color: $text; font-size: 48px; margin: 0 0 24px; }
+%h2 { color: $text; font-size: 36px; margin: 0 0 18px; }
+%h3 { color: $text; font-size: 24px; margin: 0 0 12px; }
+%h4 { color: $text; font-size: $font-size; margin: 0 0 8px; }
+%h5 { color: $text; font-size: $font-size; font-weight: bold; }
+%h6 { color: $text; font-size: $font-size; text-transform: uppercase; }
 
 p,
 address,
@@ -65,6 +67,9 @@ select { @include appearance(none); text-indent: 1px; text-overflow: ''; }
 //  ----------------------------------------------------------------------
 //  =COMPONENTS
 //  ----------------------------------------------------------------------
+[class*="-block"] { margin: 0 0 $block-y; }
+
+
 //  =BUTTONS
 .btn-primary {  }
 

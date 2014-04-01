@@ -17,11 +17,12 @@
 <meta property="og:image"       content="">
 <meta property="og:type"        content="">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 minimal-ui">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 <link rel="stylesheet" href="/assets/css/style.css">
 
-<script src="/assets/js/lib/modernizr.min.js"></script>
+<script src="/assets/js/vendor/modernizr.min.js"></script>
 
 
 <body class="{% block class %}{% endblock %}">
@@ -39,10 +40,6 @@
 <script src="/assets/js/script.js"></script>
 
 {% block js %}{% endblock %}
-
-<script>
-var _gaq=[['_setAccount','UA-XXXXX-Y'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
 
 </body>
 </html>

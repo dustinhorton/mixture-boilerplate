@@ -1,7 +1,7 @@
 //  ----------------------------------------------------------------------
 //  =RESET
 //  ----------------------------------------------------------------------
-*, *:before, *:after { @include box-sizing(border-box); all: unset; }
+*, *:before, *:after { @include box-sizing(border-box); }
 
 :first-child { margin-top: 0; }
 :last-child { margin-bottom: 0; }
@@ -52,3 +52,5 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 :-moz-placeholder           { text-overflow: ellipsis; }
 
 small { font-size: 100%; }
+
+@-ms-viewport { width: device-width; }

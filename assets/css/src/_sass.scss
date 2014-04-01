@@ -6,6 +6,7 @@ $text:        #000 !default;
 $fonts:       helvetica neue, helvetica, arial, sans-serif !default;
 $font-size:   15px !default;
 $line-height: 1.35 !default;
+$h-font-weight: normal !default;
 $placeholder: rgba($text,0.75) !default;
 
 
@@ -19,7 +20,7 @@ $cols-css-total:   $cols !default;
 //  =SPACING
 $gutter:   20px !default;
 $gutter-v: 50px !default;
-$block-s:  10px !default;
+$block-y:  10px !default;
 $list-p:   1.35em !default;
 $modal-s:  10px !default;
 
@@ -93,7 +94,7 @@ $dur-ease: $dur $ease;
 //          src: url('/font/#{$font}.eot');
 //          src: url('/font/#{$font}.eot?') format('eot'),
 //               url('/font/#{$font}.woff') format('woff'),
-//               url('/font/#{$font}.ttf')  format('truetype')
+//               url('/font/#{$font}.ttf')  format('truetype');
 //    }
 //}
 
@@ -104,6 +105,18 @@ $dur-ease: $dur $ease;
 //  =MIXINS
 //  ----------------------------------------------------------------------
 //  =FRAMEWORK
+@mixin prefix($prop, $val) {
+    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+      #{$vendor}#{$prop}: $val;
+    }
+}
+
+
+@mixin animation($str...) {
+  @include prefix(animation, $str);
+}
+
+
 @mixin bg-gradient($start, $end, $orientation: horizontal) {
     background: mix($start,$end);
     @include background(filter-gradient($start,$end,$orientation));
@@ -115,9 +128,14 @@ $dur-ease: $dur $ease;
     @include background(linear-gradient($orientation, $start, $end));
 }
 
+@mixin bg-svg($img) {
+    background: image-url($img + '.svg'); background-size: image-width($img + '.png') image-height($img + '.png');
+    .no-svg & { background-image: url($img + '.png'); }
+}
+
 
 @mixin block {
-    margin: 0 0 $block-s;
+    margin: 0 0 $block-y;
 }
 .block { @include block; }
 
@@ -152,7 +170,7 @@ $dur-ease: $dur $ease;
 
 @mixin copy {
     line-height: $line-height;
-    > li { margin: 0 0 $block-s; }
+    > li { margin: 0 0 $block-y; }
 }
 .copy { @include copy; }
 
@@ -237,10 +255,19 @@ $dur-ease: $dur $ease;
 }
 
 
-@mixin ir {  /**/
-    overflow: hidden; text-indent: 100%; white-space: nowrap;
+@mixin ir {
+    overflow: hidden; text-indent: 150%; white-space: nowrap;
 }
 .ir { @include ir; }
+
+
+@mixin keyframes($name) {
+    @-webkit-keyframes $name { @content; }
+       @-moz-keyframes $name { @content; }
+        @-ms-keyframes $name { @content; }
+         @-o-keyframes $name { @content; }
+            @keyframes $name { @content; }
+}
 
 
 @mixin media($m: $gutter) {  /**/
@@ -324,6 +351,10 @@ $dur-ease: $dur $ease;
     &:last-child { margin-bottom: 0; }
 }
 
+@mixin reset-type-headline {
+  color: $text; font-family: $fonts; font-size: $font-size; font-weight: $h-font-weight; line-height: 1; margin: 0; text-transform: none;
+}
+
 
 @mixin img-s($img) {
     width: image-width($img);
@@ -379,6 +410,15 @@ $dur-ease: $dur $ease;
         }
     }
 }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =SELECTORS
+//  ----------------------------------------------------------------------
+$a:   'a:hover, a:focus';
+$btn: 'button:hover, button:focus';
 
 
 
@@ -465,14 +505,28 @@ $dur-ease: $dur $ease;
 //  ----------------------------------------------------------------------
 //  =FUNCTIONS
 //  ----------------------------------------------------------------------
-@function w ($target, $context) {
+@function w($target, $context) {
     @return $target / $context * 100%;
 }
 
-@function aspect-radio($w, $h) {
+@function aspect-ratio($w, $h) {
     @return $h / $w * 100%;
 }
 
-@function rem ($num) {
-    @return #{$num / $font-size}rem;
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
 }
+
+@function rem($num) {
+    $num: strip-units($num);
+    @return #{$num / 16}rem;
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =COMPONENTS
+//  ----------------------------------------------------------------------
+.vid-wrap { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
+.vid-wrap > .vid { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
