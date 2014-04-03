@@ -5,13 +5,9 @@
     margin-right: -$gutter / 2; margin-left: -$gutter / 2; @include cf;
 }
 
-@mixin col {
-    min-height: 1px;
-}
-
 .cols { @include is-cols($gutter); }
-.cols > [class*="col-"] { @include col; float: left; padding-right: $gutter / 2; padding-left: $gutter / 2; }
-.cols-rev > [class*="col-"] { @include col; float: right; }
+.cols > [class*="col-"] { min-height: 1px; float: left; padding-right: $gutter / 2; padding-left: $gutter / 2; }
+.cols-rev > [class*="col-"],
 [class*="cols-"] > .col-rev { float: right; }
 
 
@@ -35,7 +31,7 @@
     @if nth($bp,1) == 'full' {
         @include generate-cols($cols-total);
     } @else {
-        @media (max-width: nth($bp,2)) {
+        @include mq(nth($bp,2)) {
             @include generate-cols($cols-total, nth($bp,1));
         }
     }
@@ -94,7 +90,7 @@
 
     @each $bp in $bps {
         .cols-fixed-#{nth($bp,1)} {
-            @media (max-width: nth($bp,2)) {
+            @include mq(nth($bp,2)) {
                 > [class*="col-"] { @include col-reset; }
                 > .col-fixed { @include col-reset; margin: $gutter-v 0 0; }
             }
@@ -138,11 +134,6 @@
     @include column-gap($gutter);
 }
 
-@mixin cols-copy($cols, $gutter: $gutter) {
-    @include column-count($cols);
-    @include column-gap($gutter);
-}
-
 @mixin generate-cols-copy($cols, $bp: '') {
     @for $i from 1 through $cols {
         @if $bp == '' {
@@ -157,7 +148,7 @@
     @if nth($bp,1) == 'full' {
         @include generate-cols-copy($cols-copy-total);
     } @else {
-        @media (max-width: nth($bp,2)) {
+        @include mq(nth($bp,2)) {
             @include generate-cols-copy($cols-copy-total, nth($bp,1));
         }
     }
@@ -177,6 +168,6 @@
 //  ----------------------------------------------------------------------
 @each $bp in $bps {
     .section-#{nth($bp,1)} {
-        @include mq(#{nth($bp,2)}) { margin: 0 0 $gutter-v; }
+        @include mq(nth($bp,2)) { margin: 0 0 $gutter-v; }
     }
 }

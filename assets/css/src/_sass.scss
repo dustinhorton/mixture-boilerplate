@@ -371,7 +371,7 @@ $dur-ease: $dur $ease;
 @mixin text-break {
     word-break: break-all;
     word-break: break-word;
-    word-wrap: break-word;
+    word-wrap:  break-word;
 }
 
 @mixin text-no-break {
@@ -485,7 +485,7 @@ $btn: 'button:hover, button:focus';
 
 @each $bp in $bps {
     .show-hide-#{nth($bp,1)} {
-        @include mq(#{nth($bp,2)}) {
+        @include mq(nth($bp,2)) {
             display: none;
         }
     }
@@ -493,7 +493,7 @@ $btn: 'button:hover, button:focus';
     .hide-show-#{nth($bp,1)} {
         display: none !important;
 
-        @include mq(#{nth($bp,2)}) {
+        @include mq(nth($bp,2)) {
             display: inherit !important;
         }
     }
