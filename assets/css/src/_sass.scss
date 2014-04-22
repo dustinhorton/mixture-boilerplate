@@ -69,10 +69,6 @@ $sbold: 600;
 $xbold: 800;
 
 
-//  =ANIMATION
-$dur-ease: $dur $ease;
-
-
 
 
 //  ----------------------------------------------------------------------
@@ -433,7 +429,7 @@ $btn: 'button:hover, button:focus';
         }
     }
 
-    @else if $bp == retina {
+    @else if $bp == hidpi {
         @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
             @content;
         }

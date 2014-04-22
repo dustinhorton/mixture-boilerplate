@@ -25,7 +25,7 @@ address, cite { font-style: normal; }
 blockquote { quotes: none; }
 blockquote:before, blockquote:after { content: ''; content: none; }
 
-iframe { width: 100%; display: block; }
+/*iframe { width: 100%; display: block; }*/
 
 h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 
@@ -39,6 +39,7 @@ sub { bottom: -0.25em; }
 input, textarea, select, button { border: 0; font-size: 100%; margin: 0; outline: 0; }
 input, textarea, select { width: 100%; }
 label, select, button { cursor: pointer; }
+input, textarea { @include appearance(none); border-radius: 0; }
 input, select { vertical-align: middle; }
 input[type="checkbox"],
 input[type="radio"] { cursor: pointer; }
