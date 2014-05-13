@@ -160,6 +160,8 @@
 
 @mixin col-unit {
     -webkit-column-break-inside: avoid;
+           -webkit-break-inside: avoid;
+              -moz-break-inside: avoid;
                    break-inside: avoid;
 }
 .col-unit { @include col-unit; }

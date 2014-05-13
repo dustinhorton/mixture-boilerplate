@@ -27,8 +27,8 @@ body {
 
 @for $i from 1 through 6 {
   %h#{$i} { @extend %h;      }
-  h#{$i}  { @extend %h#{$i}; }
-  .h#{$i} { @extend %h#{$i}; @include reset-type-headline; }
+   h#{$i} { @extend %h#{$i}; }
+  .h#{$i} { @extend %h#{$i}; @include reset-type-heading; }
 }
 
 %h  { color: $text; font-weight: $h-font-weight; }
@@ -45,8 +45,6 @@ blockquote,
 dl,
 dd,
 figure { @include copy-block; }
-
-img { max-width: 100%; height: auto; }
 
 
 //  =FORMS

@@ -352,8 +352,8 @@ $xbold: 800;
     &:last-child { margin-bottom: 0; }
 }
 
-@mixin reset-type-headline {
-  color: $text; font-family: $fonts; font-size: $font-size; font-weight: $h-font-weight; line-height: 1; margin: 0; text-transform: none;
+@mixin reset-type-heading {
+  color: $text; font-family: $fonts; font-size: $font-size; font-weight: $h-font-weight; letter-spacing: 0; line-height: 1; margin: 0; text-transform: none;
 }
 
 
@@ -536,3 +536,13 @@ $btn: 'button:hover, button:focus';
 
 .vid-wrap { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
 .vid-wrap > .vid { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =STATES
+//  ----------------------------------------------------------------------
+
+.active { cursor: default; }
+.disabled { cursor: default; pointer-events: none; }
