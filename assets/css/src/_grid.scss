@@ -161,8 +161,7 @@
 }
 
 @mixin col-unit {
-  @include prefix(break-inside, avoid);
-  -webkit-column-break-inside: avoid;
+  @include break-inside(avoid);
 }
 .col-unit { @include col-unit; }
 
