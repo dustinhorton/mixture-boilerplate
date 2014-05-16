@@ -22,8 +22,10 @@ $cols-copy-total:  $cols !default;
 $gutter:   20px !default;
 $gutter-v: 50px !default;
 $block-y:  10px !default;
-$list-p:   1.35em !default;
-$modal-s:  10px !default;
+
+$container-gutter: $gutter !default;
+$list-p: 1.35em !default;
+$modal-s: 10px !default;
 
 
 //  =CONTENT
@@ -89,13 +91,13 @@ $xbold: 800;
 //  ----------------------------------------------------------------------
 
 //@each $font in  {
-//    @font-face {
-//          font-family: $font; font-weight: normal;
-//          src: url('/font/#{$font}.eot');
-//          src: url('/font/#{$font}.eot?') format('eot'),
-//               url('/font/#{$font}.woff') format('woff'),
-//               url('/font/#{$font}.ttf')  format('truetype');
-//    }
+//  @font-face {
+//    font-family: $font; font-weight: normal;
+//    src: url('/font/#{$font}.eot');
+//    src: url('/font/#{$font}.eot?') format('eot'),
+//         url('/font/#{$font}.woff') format('woff'),
+//         url('/font/#{$font}.ttf')  format('truetype');
+//  }
 //}
 
 
@@ -107,9 +109,9 @@ $xbold: 800;
 
 //  =FRAMEWORK
 @mixin prefix($prop, $val) {
-    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
-      #{$vendor}#{$prop}: $val;
-    }
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$prop}: $val;
+  }
 }
 
 
@@ -119,297 +121,328 @@ $xbold: 800;
 
 
 @mixin bg-gradient($start, $end, $orientation: horizontal) {
-    background: mix($start,$end);
-    @include background(filter-gradient($start,$end,$orientation));
-    @if $orientation == 'horizontal' {
-        $orientation: 'left';
-    } @else {
-        $orientation: 'top';
-    }
-    @include background(linear-gradient($orientation, $start, $end));
+  background: mix($start,$end);
+  @include background(filter-gradient($start,$end,$orientation));
+  @if $orientation == 'horizontal' {
+    $orientation: 'left';
+  } @else {
+    $orientation: 'top';
+  }
+  @include background(linear-gradient($orientation, $start, $end));
 }
 
 @mixin bg-svg($img) {
-    background: image-url($img + '.svg'); background-size: image-width($img + '.png') image-height($img + '.png');
-    .no-svg & { background-image: url($img + '.png'); }
+  background: image-url($img + '.svg');
+  background-size: image-width($img + '.png') image-height($img + '.png');
+  .no-svg & { background-image: url($img + '.png'); }
 }
 
 
 @mixin block {
-    margin: 0 0 $block-y;
+  margin: 0 0 $block-y;
 }
 .block { @include block; }
 
 
-@mixin btn-block {
-    @include block;
-}
-.btn-block { @include btn-block; }
 
 @mixin btn-full($align: left) {
-    width: 100%; display: block; text-align: $align;
+  width: 100%;
+  display: block;
+  text-align: $align;
 }
 .btn-full { @include btn-full; }
 
 
 @mixin center($w, $h) {
-    width: $w; height: $h; margin: (-$h/2) 0 0 (-$w/2); position: absolute; top: 50%; left: 50%;
+  width: $w;
+  height: $h;
+  margin: (-$h / 2) 0 0 (-$w / 2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @mixin center-v {
-    display: table;
-
-    > * { display: table-cell; vertical-align: middle; }
+  display: table;
+  > * { display: table-cell; vertical-align: middle; }
 }
 
 
-@mixin container {
-    max-width: $full; margin: auto; padding: 0 $gutter;
+@mixin container {  /**/
+  max-width: $full;
+  margin: auto;
+  padding: 0 $container-gutter;
 }
 .container { @include container; }
 
 
 @mixin copy {
-    line-height: $line-height;
-    > li { margin: 0 0 $block-y; }
+  line-height: $line-height;
 }
 .copy { @include copy; }
 
-@mixin copy-block {
-    @include block;
-    @include copy;
-}
-.copy-block { @include copy-block; }
-
 
 @mixin cf {
-    &:before,
-    &:after { content: ' '; display: table; }
-    &:after { clear: both; }
+  &:before,
+  &:after { content: ' '; display: table; }
+  &:after { clear: both; }
 }
 .cf { @include cf; }
 
 
-@mixin click {
-    cursor: pointer !important;
-}
-
-
 @mixin font-size($size) {
-    font-size: $size;
-    font-size: rem($size);
+  font-size: $size;
+  font-size: rem($size);
 }
 
 
 @mixin hidden {
-    width: 1px; height: 1px; border: 0; clip: rect(0 0 0 0); margin: -1px; overflow: hidden; padding: 0; position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }
 .hidden { @include hidden; }
 
 
-@mixin img-block {
-    @include block;
-}
-.img-block { @include img-block; }
-
 @mixin img-full {
-    width: 100%; max-width: none;
+  width: 100%;
+  max-width: none;
 }
 .img-full { @include img-full; }
 
 
 @mixin list-bulleted {
-    list-style: disc; padding-left: $list-p;
+  list-style: disc;
+  padding-left: $list-p;
 }
 .list-bulleted { @include list-bulleted; }
 
 @mixin list-numbered {
-    list-style: decimal; padding-left: $list-p;
+  list-style: decimal;
+  padding-left: $list-p;
 }
 .list-numbered { @include list-numbered; }
 
 @mixin list-alpha {
-    list-style: lower-alpha; padding-left: $list-p;
+  list-style: lower-alpha;
+  padding-left: $list-p;
 }
 .list-alpha { @include list-alpha; }
 
+@mixin list-blocks {
+  > li,
+  > dd { margin: 0 0 $block-y; }
+}
+.list-blocks { @include list-blocks; }
 
 @mixin list-float($m-r: 0, $m-b: 0) {
-    @include cf;
+  @include cf;
 
-    > li {
-        float: left;
-        @if $m-r != 0 {
-            margin-right: $m-r;
-        }
-        @if $m-b != 0 {
-            margin-bottom: $m-b;
-        }
+  > li {
+    float: left;
+    @if $m-r != 0 {
+        margin-right: $m-r;
     }
+    @if $m-b != 0 {
+        margin-bottom: $m-b;
+    }
+  }
 }
 
 @mixin list-inline($m: 0) {
-    > li { display: inline-block; }
-    @if $m != 0 {
-        > li + li { margin-left: $m; }
-    }
+  > li { display: inline-block; }
+  @if $m != 0 {
+    > li + li { margin-left: $m; }
+  }
 }
 
 
 @mixin ir {
-    overflow: hidden; text-indent: 150%; white-space: nowrap;
+  overflow: hidden;
+  text-indent: 150%;
+  white-space: nowrap;
 }
 .ir { @include ir; }
 
 
 @mixin keyframes($name) {
-    @-webkit-keyframes $name { @content; }
-       @-moz-keyframes $name { @content; }
-        @-ms-keyframes $name { @content; }
-         @-o-keyframes $name { @content; }
-            @keyframes $name { @content; }
+  @-webkit-keyframes $name { @content; }
+     @-moz-keyframes $name { @content; }
+      @-ms-keyframes $name { @content; }
+       @-o-keyframes $name { @content; }
+          @keyframes $name { @content; }
 }
 
 
 @mixin media($m: $gutter) {  /**/
-    float: left; margin: 0 $m 0 0;
+  float: left;
+  margin: 0 $m 0 0;
 }
 
 @mixin media-content {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 @mixin media-simple($m: $gutter) {  /**/
-    > .media-media { @include media($m); }
-
-    > .media-media + [class*="-content"] { @include media-content; }  /**/
+  > .media-media { @include media($m); }
+  > .media-media + [class*="-content"] { @include media-content; }  /**/
 }
 
 @mixin media-centered($m: $gutter) {  /**/
-    width: 100%; display: table;
+  width: 100%;
+  display: table;
 
-    > .media-media,
-    > .media-content { display: table-cell; vertical-align: middle; }
+  > .media-media,
+  > .media-content {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
-    > .media-media { padding-right: $m; }
-    > .media-media > img { max-width: none; display: block; }
+  > .media-media {
+    padding-right: $m;
+  }
+  > .media-media > img {
+    max-width: none;
+    display: block;
+  }
 
-    > .media-content { width: 100%; }
-    &.media-top > .media-content { vertical-align: top; }
-    &.media-bottom > .media-content { vertical-align: bottom; }
+  > .media-content { width: 100%; }
+  &.media-top > .media-content { vertical-align: top; }
+  &.media-bottom > .media-content { vertical-align: bottom; }
 
-    &.rev {
-        > .media-media {
-            padding-right: 0;
-            padding-left: $gutter;
-        }
+  &.rev {
+    > .media-media {
+      padding-right: 0;
+      padding-left: $gutter;
     }
+  }
 }
 .media-centered { @include media-centered; }
 
 
 @mixin modal-w($w) {
-    width: $w; margin: 0 0 0 (-$w/2);
+  width: $w; margin: 0 0 0 (-$w/2);
 
-    @include mq($w + ($modal-s*2)) {
-        width: auto; margin: 0; top: $modal-s; right: $modal-s; left: $modal-s;
-    }
+  @include mq($w + ($modal-s*2)) {
+    width: auto; margin: 0; top: $modal-s; right: $modal-s; left: $modal-s;
+  }
 }
 
 
 @mixin placeholder($color: $placeholder) {
-    &:-moz-placeholder { color: $color; }
-    &::-webkit-input-placeholder { color: $color; }
-    &:-ms-input-placeholder { color: $color; }
+  &:-moz-placeholder           { color: $color; }
+  &::-webkit-input-placeholder { color: $color; }
+  &:-ms-input-placeholder      { color: $color; }
 }
 .placeholder { color: $placeholder; }
 
 
 @mixin prefix($prop, $val) {
-    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
-        #{$vendor}#{$prop}: #{$val};
-    }
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$prop}: #{$val};
+  }
 }
 
 
 @mixin pull($dir: right) {
-    float: $dir;
+  float: $dir;
 }
-.pull-right { @include pull; }
-.pull-left { @include pull(left); }
+.pull-right { @include pull;       }
+.pull-left  { @include pull(left); }
 
 
 @mixin reset {
-    width: auto; background: none; border: 0; float: none; margin: 0; padding: 0; @include reset-font();
+  width: auto;
+  background: none;
+  border: 0;
+  float: none;
+  margin: 0;
+  padding: 0;
+  @include reset-type;
 }
 
-@mixin reset-font {
-    color: $text; font: $font-size/#{$line-height} $fonts; text-transform: none;
-}
-
-@mixin reset-margins {
-    &:first-child { margin-top: 0; }
-    &:last-child { margin-bottom: 0; }
+@mixin reset-type {
+  color: $text;
+  font-family: $fonts;
+  font-size: $font-size;
+  line-height: $line-height;
+  text-transform: none;
 }
 
 @mixin reset-type-heading {
-  color: $text; font-family: $fonts; font-size: $font-size; font-weight: $h-font-weight; letter-spacing: 0; line-height: 1; margin: 0; text-transform: none;
+  @include reset-type;
+  font-weight: $h-font-weight;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+@mixin reset-margins {
+  &:first-child { margin-top: 0;    }
+  &:last-child  { margin-bottom: 0; }
 }
 
 
 @mixin img-s($img) {
-    width: image-width($img);
-    height: image-height($img);
+  width:  image-width($img);
+  height: image-height($img);
 }
 
 
 @mixin table-full {
-    width: 100%;
+  width: 100%;
 }
 .table-full { @include table-full; }
 
 
 @mixin text-break {
-    word-break: break-all;
-    word-break: break-word;
-    word-wrap:  break-word;
+  word-break: break-all;
+  word-break: break-word;
+  word-wrap:  break-word;
 }
 
 @mixin text-no-break {
-    -ms-word-break: break-all;
-        word-break: break-all;
-        word-break: break-word;
-    -webkit-hyphens: auto;
-       -moz-hyphens: auto;
-            hyphens: auto;
+  @include hyphens(auto);
+  -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
 }
 
 @mixin text-truncate {
-    max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
 }
 
 
 @mixin triangle($dir, $size, $color) {
-    position: relative;
-    @if ($dir == "top" or $dir == "up" or $dir == "left" or $dir == "before") {
-        &:before {
-            content: ''; border: $size transparent solid; position: absolute; top: -$size*2;
-            @if ($dir == "top" or $dir == "up") {
-                border-bottom-color: $color; left: 50%; margin: 0 0 0 (-$size);
-            } @else if ($dir == "right" or $dir == "after") {
-                border-left-color: $color;
-            }
-        }
-    } @else if ($dir == "bottom" or $dir == "down" or $dir == "left" or $dir == "before") {
-        &:after {
-            content: ''; border: $size transparent solid; position: absolute; top: -$size;
-            @if ($dir == "bottom" or $dir == "down") {
-                border-top-color: $color;
-            } @else if ($dir == "left" or $dir == "before") {
-                border-right-color: $color;
-            }
-        }
+  position: relative;
+  @if ($dir == "top" or $dir == "up" or $dir == "left" or $dir == "before") {
+    &:before {
+      content: ''; border: $size transparent solid; position: absolute; top: -$size*2;
+      @if ($dir == "top" or $dir == "up") {
+        border-bottom-color: $color; left: 50%; margin: 0 0 0 (-$size);
+      } @else if ($dir == "right" or $dir == "after") {
+        border-left-color: $color;
+      }
     }
+  } @else if ($dir == "bottom" or $dir == "down" or $dir == "left" or $dir == "before") {
+    &:after {
+      content: ''; border: $size transparent solid; position: absolute; top: -$size;
+      @if ($dir == "bottom" or $dir == "down") {
+        border-top-color: $color;
+      } @else if ($dir == "left" or $dir == "before") {
+        border-right-color: $color;
+      }
+    }
+  }
 }
 
 
@@ -429,52 +462,64 @@ $btn: 'button:hover, button:focus';
 //  =MEDIA QUERIES
 //  ----------------------------------------------------------------------
 
-@mixin mq($bp) {
-    @if $bp == webkit {
-        @media (-webkit-min-device-pixel-ratio: 0) {
-            @content;
-        }
+@mixin mq($val) {
+  @if $val == webkit {
+    @media (-webkit-min-device-pixel-ratio: 0) {
+      @content;
     }
+  }
 
-    @else if $bp == hidpi {
-        @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-            @content;
-        }
+  @else if $val == ff {
+    @-moz-document url-prefix() {
+      @content;
     }
+  }
 
-    @else {
-        @media (max-width: $bp) {
-            @content;
-        }
+  @else if $val == hidpi {
+    @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+      @content;
     }
+  }
+
+  @else {
+    @media (max-width: $val) {
+      @content;
+    }
+  }
 }
 
 @mixin mq-min($bp) {
-    @media (min-width: $bp) {
-        @content;
-    }
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin mq-range($bp-min, $bp-max) {
+  @media (min-width: $bp-min) and (max-width: $bp-max) {
+    @content;
+  }
 }
 
 @mixin mq-h($bp) {
-    @media (max-height: $bp) {
-        @content;
-    }
+  @media (max-height: $bp) {
+    @content;
+  }
 }
 
 @mixin mq-h-min($bp) {
-    @media (min-height: $bp) {
-        @content;
-    }
+  @media (min-height: $bp) {
+    @content;
+  }
 }
 
 @mixin mq-class($bp, $class) {
-    @include mq($bp) {
-        @content;
-    }
+  @include mq($bp) {
+    @content;
+  }
 
-    .#{$class} & {
-        @content;
-    }
+  .#{$class} & {
+    @content;
+  }
 }
 
 
@@ -488,19 +533,14 @@ $btn: 'button:hover, button:focus';
 .show { display: inherit; }
 
 @each $bp in $bps {
-    .show-hide-#{nth($bp,1)} {
-        @include mq(nth($bp,2)) {
-            display: none;
-        }
-    }
+  .show-hide-#{nth($bp,1)} {
+    @include mq(nth($bp,2)) { display: none; }
+  }
 
-    .hide-show-#{nth($bp,1)} {
-        display: none !important;
-
-        @include mq(nth($bp,2)) {
-            display: inherit !important;
-        }
-    }
+  .hide-show-#{nth($bp,1)} {
+    display: none !important;
+    @include mq(nth($bp,2)) { display: inherit !important; }
+  }
 }
 
 
@@ -511,11 +551,11 @@ $btn: 'button:hover, button:focus';
 //  ----------------------------------------------------------------------
 
 @function w($target, $context) {
-    @return $target / $context * 100%;
+  @return $target / $context * 100%;
 }
 
 @function aspect-ratio($w, $h) {
-    @return $h / $w * 100%;
+  @return $h / $w * 100%;
 }
 
 @function strip-unit($num) {
@@ -523,8 +563,8 @@ $btn: 'button:hover, button:focus';
 }
 
 @function rem($num) {
-    $num: strip-units($num);
-    @return #{$num / 16}rem;
+  $num: strip-units($num);
+  @return #{$num / 16}rem;
 }
 
 
@@ -544,5 +584,5 @@ $btn: 'button:hover, button:focus';
 //  =STATES
 //  ----------------------------------------------------------------------
 
-.active { cursor: default; }
+.active   { cursor: default; }
 .disabled { cursor: default; pointer-events: none; }

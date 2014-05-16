@@ -3,7 +3,7 @@
 //  ----------------------------------------------------------------------
 
 @mixin is-cols($gutter: $gutter) {
-    margin-right: -$gutter / 2; margin-left: -$gutter / 2; @include cf;
+  margin: -$gutter / 2; margin-left: -$gutter / 2; @include cf;
 }
 
 .cols { @include is-cols($gutter); }
@@ -12,52 +12,55 @@
 [class*="cols-"] > .col-rev { float: right; }
 
 
-@mixin generate-cols($cols, $bp: '') {
-    @for $i from 2 through $cols {
-        @if $i == 2 {
-            .col-#{$bp}-1 { width: 100%; }
-        }
-
-        @for $x from 1 through $i {
-            @if $bp == '' {
-                .col-#{$x}-#{$i} { width: w($x,$i); }
-            } @else {
-                .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
-            }
-        }
-    }
-}
-
-@each $bp in $bps {
-    @if nth($bp,1) == 'full' {
-        @include generate-cols($cols-total);
-    } @else {
-        @include mq(nth($bp,2)) {
-            @include generate-cols($cols-total, nth($bp,1));
-        }
-    }
-}
-
-
 @mixin col($gutter: $gutter) {
-    > [class*="col-"] { padding-right: $gutter / 2; padding-left: $gutter / 2; }
-}
-
-@mixin cols($gutter: $gutter) {
-    .cols {
-        @include is-cols($gutter);
-        @include col($gutter);
-    }
+  > [class*="col-"] { padding-right: $gutter / 2; padding-left: $gutter / 2; }
 }
 
 @mixin cols-this($gutter: $gutter) {
-    @include is-cols($gutter);
-    @include col($gutter);
+  @include is-cols($gutter);
+  @include col($gutter);
+}
+
+@mixin cols($gutter: $gutter) {
+  .cols { @include cols-this($gutter); }
+}
+
+@mixin reset-cols-this {
+  margin-right: 0; margin-left: 0;
+  > [class*="col-"] { width: auto; float: none; padding-right: 0; padding-left: 0; }
 }
 
 @mixin reset-cols {
-    .cols { margin-right: 0 !important; margin-left: 0 !important; }
-    [class*="col-"] { width: auto !important; float: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+  .cols { @include reset-cols-this; }
+}
+
+
+@mixin generate-cols($cols, $bp: '') {
+  @for $i from 2 through $cols {
+    @if $i == 2 {
+      .col-#{$bp}-1 { width: 100%; }
+    }
+
+    @for $x from 1 through $i {
+      @if $bp == '' {
+        .col-#{$x}-#{$i} { width: w($x,$i); }
+      } @else {
+        .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
+      }
+    }
+  }
+}
+
+@each $bp in $bps {
+  @if nth($bp,1) == 'full' {
+    @include generate-cols($cols-total);
+  } @else {
+    @include mq(nth($bp,2)) {
+      @include generate-cols($cols-total, nth($bp,1));
+
+      .cols-reset-#{nth($bp,1)} { @include reset-cols-this; }
+    }
+  }
 }
 
 
@@ -67,39 +70,38 @@
 //  =COLUMNS - FIXED
 //  ----------------------------------------------------------------------
 
-@mixin col-reset {
-    width: auto; float: none; margin: 0;
+@mixin reset-col {
+  width: auto; float: none; margin: 0;
 }
 
 .cols-fixed .col-fixed { float: right; }
 
 @mixin generate-cols-fixed($cols-total) {
-    @for $i from 1 through $cols-total {
-        @for $cols from 1 through $cols-total {
-            @if ($cols < $cols-total) {
-                $ratio: $cols / $cols-total;
-                $sidebar-total: $full - $full * $ratio;
-                $width: $full - $sidebar-total;
+  @for $i from 1 through $cols-total {
+    @for $cols from 1 through $cols-total {
+      @if ($cols < $cols-total) {
+        $ratio: $cols / $cols-total;
+        $sidebar-total: $full - $full * $ratio;
+        $width: $full - $sidebar-total;
 
-                .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
+        .col-#{$cols}-#{$cols-total} { width: auto; margin-right: $sidebar-total; }
 
-                .col-fixed.col-#{$cols}-#{$cols-total} { width: $width; margin-right: 0; margin-left: -$width; }
-            }
-        }
-
-        $cols-total: $cols-total - 1;
+        .col-fixed.col-#{$cols}-#{$cols-total} { width: $width; margin-right: 0; margin-left: -$width; }
+      }
     }
 
-    @each $bp in $bps {
-        .cols-fixed-#{nth($bp,1)} {
-            @include mq(nth($bp,2)) {
-                > [class*="col-"] { @include col-reset; }
-                > .col-fixed { @include col-reset; margin: $gutter-v 0 0; }
-            }
-        }
+    $cols-total: $cols-total - 1;
+  }
+
+  @each $bp in $bps {
+    .cols-fixed-reset-#{nth($bp,1)} {
+      @include mq(nth($bp,2)) {
+        > [class*="col-"] { @include reset-col; }
+        > .col-fixed { @include reset-col; margin: $gutter-v 0 0; }
+      }
     }
+  }
 }
-
 
 @include generate-cols-fixed($cols-fixed-total);
 
@@ -113,15 +115,15 @@
 [class*="col-"].col-solo { width: auto; }
 
 @mixin generate-cols-solo($cols-total) {
-    @for $i from 1 through $cols-total {
-        @for $cols from 1 through $cols-total {
-            @if ($cols < $cols-total) {
-                .col-#{$cols}-#{$cols-total}.col-solo { max-width: $full / $cols-total * $cols; }
-            }
-        }
-
-        $cols-total: $cols-total - 1;
+  @for $i from 1 through $cols-total {
+    @for $cols from 1 through $cols-total {
+      @if ($cols < $cols-total) {
+        .col-#{$cols}-#{$cols-total}.col-solo { max-width: $full / $cols-total * $cols; }
+      }
     }
+
+    $cols-total: $cols-total - 1;
+  }
 }
 
 @include generate-cols-solo($cols-total);
@@ -134,23 +136,23 @@
 //  ----------------------------------------------------------------------
 
 @mixin cols-copy($cols, $gutter: $gutter) {
-    @include column-count($cols);
-    @include column-gap($gutter);
+  @include column-count($cols);
+  @include column-gap($gutter);
 }
 
 @mixin generate-cols-copy($cols, $bp: '') {
-    @for $i from 1 through $cols {
-        @if $bp == '' {
-            .cols-#{$i} { @include cols-copy($i); }
-        } @else {
-            .cols-#{$bp}-#{$i} { @include column-count($i); }
-        }
+  @for $i from 1 through $cols {
+    @if $bp == '' {
+      .cols-#{$i} { @include cols-copy($i); }
+    } @else {
+      .cols-#{$bp}-#{$i} { @include column-count($i); }
     }
+  }
 }
 
 @each $bp in $bps {
     @if nth($bp,1) == 'full' {
-        @include generate-cols-copy($cols-copy-total);
+      @include generate-cols-copy($cols-copy-total);
     } @else {
         @include mq(nth($bp,2)) {
             @include generate-cols-copy($cols-copy-total, nth($bp,1));
@@ -159,10 +161,8 @@
 }
 
 @mixin col-unit {
-    -webkit-column-break-inside: avoid;
-           -webkit-break-inside: avoid;
-              -moz-break-inside: avoid;
-                   break-inside: avoid;
+  @include prefix(break-inside, avoid);
+  -webkit-column-break-inside: avoid;
 }
 .col-unit { @include col-unit; }
 
@@ -174,7 +174,7 @@
 //  ----------------------------------------------------------------------
 
 @each $bp in $bps {
-    .section-#{nth($bp,1)} {
-        @include mq(nth($bp,2)) { margin: 0 0 $gutter-v; }
-    }
+  .section-#{nth($bp,1)} {
+    @include mq(nth($bp,2)) { margin: 0 0 $gutter-v; }
+  }
 }

@@ -1,6 +1,7 @@
 //  ----------------------------------------------------------------------
 //  =VENDOR
 //  ----------------------------------------------------------------------
+
 /*!
  * imagesLoaded PACKAGED v3.0.2
  * JavaScript is all like "You images are done yet or what?"
@@ -1451,6 +1452,7 @@ if ( typeof define === 'function' && define.amd ) {
 //  ----------------------------------------------------------------------
 //  =MODERNIZR
 //  ----------------------------------------------------------------------
+
 Modernizr.load([
   {
     test     : Modernizr.input.placeholder,
@@ -1467,6 +1469,7 @@ Modernizr.load([
 //  ----------------------------------------------------------------------
 //  =VARS
 //  ----------------------------------------------------------------------
+
 var $win = $(window)
   , $body = $('body')
   , full          = 1280
@@ -1488,6 +1491,7 @@ var $win = $(window)
 //  ----------------------------------------------------------------------
 //  =EQUALIZE
 //  ----------------------------------------------------------------------
+
 $win.on('resize', $.debounce(100, function() {
   if (typeof equalize === 'function') equalize();
 })).resize();
@@ -1498,6 +1502,7 @@ $win.on('resize', $.debounce(100, function() {
 //  ----------------------------------------------------------------------
 //  =ANALYTICS
 //  ----------------------------------------------------------------------
+
 // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 // ga('create', 'UA-XXXXX-Y');
 // ga('send', 'pageview');
