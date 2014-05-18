@@ -2,40 +2,43 @@
 //  =COLUMNS
 //  ----------------------------------------------------------------------
 
-@mixin is-cols($gutter: $gutter) {
-  margin: -$gutter / 2; margin-left: -$gutter / 2; @include cf;
-}
-
-.cols { @include is-cols($gutter); }
-.cols > [class*="col-"] { min-height: 1px; float: left; padding-right: $gutter / 2; padding-left: $gutter / 2; }
-.cols-rev > [class*="col-"],
-[class*="cols-"] > .col-rev { float: right; }
-
-
-@mixin col($gutter: $gutter) {
-  > [class*="col-"] { padding-right: $gutter / 2; padding-left: $gutter / 2; }
-}
-
-@mixin cols-this($gutter: $gutter) {
-  @include is-cols($gutter);
-  @include col($gutter);
-}
-
 @mixin cols($gutter: $gutter) {
-  .cols { @include cols-this($gutter); }
+  margin-right: -$gutter / 2; margin-left:  -$gutter / 2;
 }
 
-@mixin reset-cols-this {
-  margin-right: 0; margin-left: 0;
-  > [class*="col-"] { width: auto; float: none; padding-right: 0; padding-left: 0; }
+@mixin col($gutter: $grid-gutter) {
+  padding: 0 ($gutter / 2);
+}
+
+@mixin generate-cols($gutter: $gutter) {
+  @include cols($gutter);
+
+  > [class*="col-"] {
+    @include col($gutter);
+  }
 }
 
 @mixin reset-cols {
-  .cols { @include reset-cols-this; }
+  margin-right: 0; margin-left: 0;
+
+  > [class*="col-"] { width: auto; float: none; padding-right: 0; padding-left: 0; }
 }
 
 
-@mixin generate-cols($cols, $bp: '') {
+.cols {
+  @include cols($gutter);
+  @include cf;
+
+  > [class*="col-"] {
+    @include col($gutter);
+    min-height: 1px; float: left;
+  }
+}
+
+.cols-rev > [class*="col-"] { float: right; }
+
+
+@mixin generate-all-cols($cols, $bp: '') {
   @for $i from 2 through $cols {
     @if $i == 2 {
       .col-#{$bp}-1 { width: 100%; }
@@ -53,12 +56,12 @@
 
 @each $bp in $bps {
   @if nth($bp,1) == 'full' {
-    @include generate-cols($cols-total);
+    @include generate-all-cols($cols-total);
   } @else {
     @include mq(nth($bp,2)) {
-      @include generate-cols($cols-total, nth($bp,1));
+      @include generate-all-cols($cols-total, nth($bp,1));
 
-      .cols-reset-#{nth($bp,1)} { @include reset-cols-this; }
+      .cols-reset-#{nth($bp,1)} { @include reset-cols; }
     }
   }
 }
