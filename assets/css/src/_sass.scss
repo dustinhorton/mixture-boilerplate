@@ -134,7 +134,7 @@ $xbold: 800;
 @mixin bg-svg($img) {
   background: image-url($img + '.svg');
   background-size: image-width($img + '.png') image-height($img + '.png');
-  .no-svg & { background-image: url($img + '.png'); }
+  .no-svg & { background-image: image-url($img + '.png'); }
 }
 
 
@@ -574,8 +574,13 @@ $btn: 'button:hover, button:focus';
 //  =COMPONENTS
 //  ----------------------------------------------------------------------
 
-.vid-wrap { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
-.vid-wrap > .vid { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.embed { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
+.embed > .embed-src { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+
+
+.form-single { width: 100%; display: table; }
+.form-single-input { width: 100%; display: table-cell; }
+.form-single-action { width: 1%; display: table-cell; padding: 0 0 0 $gutter; }
 
 
 

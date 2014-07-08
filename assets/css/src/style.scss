@@ -19,7 +19,6 @@
 //  ----------------------------------------------------------------------
 
 body, input, textarea, select, button { font-family: $fonts; }
-body, select, button { line-height: 1; }
 body {
   color: $text; font-size: $font-size;
   .lt-ie9 & { width: $full; margin: auto; }

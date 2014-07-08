@@ -2,45 +2,44 @@
 <!--[if IE 8]>         <html lang="en" class="no-js ie ie8 lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html lang="en" class="no-js ie ie9">        <![endif]-->
 <!--[if gt IE 9]><!--> <html lang="en" class="no-js">               <!--<![endif]-->
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    {% assign title = '' %}
-    {% assign desc  = '' %}
+  {% assign title = '' %}
+  {% assign desc  = '' %}
 
-    <title>{% block title %}{{ title }}{% endblock %}</title>
+  <title>{% block title %}{{ title }}{% endblock %}</title>
 
-    <meta name="description" content="{{ desc }}">
-    <meta name="author"      content="MODE">
+  <meta name="description" content="{{ desc }}">
+  <meta name="author"      content="">
 
-    <meta property="og:site_name"   content="{{ title }}">
-    <!-- <meta property="og:url"         content=""> -->
-    <meta property="og:title"       content="{{ title }}">
-    <meta property="og:description" content="{{ desc }}">
-    <meta property="og:image"       content="/assets/img/1200x630.png">
+  <meta property="og:site_name"   content="{{ title }}">
+  <meta property="og:title"       content="{{ title }}">
+  <meta property="og:description" content="{{ desc }}">
+  <meta property="og:image"       content="/assets/img/1200x630.png">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-    <script src="/assets/js/vendor/modernizr.min.js"></script>
-
-
-    <body class="{% block class %}{% endblock %}">
-        <header id="header" class="header-main"></header>
-
-        <main id="content" class="content-main">
-            {% block content %}{% endblock %}
-        </main>
-
-        <footer id="footer" class="footer-main"></footer>
+  <script src="/assets/js/vendor/modernizr.min.js"></script>
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!--[if lt IE 9]> <script src="/assets/js/polyfill/lt-ie9.min.js"></script> <![endif]-->
-        <script src="/assets/js/script.js"></script>
+  <body class="{% block class %}{% endblock %}">
+    <header id="header" class="header-main"></header>
 
-        {% block js %}{% endblock %}
-    </body>
+    <main id="content" class="content-main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer id="footer" class="footer-main"></footer>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--[if lt IE 9]> <script src="/assets/js/polyfill/lt-ie9.min.js"></script> <![endif]-->
+    <script src="/assets/js/script.js"></script>
+
+    {% block js %}{% endblock %}
+  </body>
 </html>
