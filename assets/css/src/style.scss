@@ -25,7 +25,7 @@ body {
 }
 
 @for $i from 1 through 6 {
-  %h#{$i} { @extend %h;      }
+  %h#{$i} { @extend %h; }
    h#{$i} { @extend %h#{$i}; }
   .h#{$i} { @extend %h#{$i}; @include reset-type-heading; }
 }

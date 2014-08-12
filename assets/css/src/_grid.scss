@@ -100,7 +100,7 @@
     .cols-fixed-reset-#{nth($bp,1)} {
       @include mq(nth($bp,2)) {
         > [class*="col-"] { @include reset-col; }
-        > .col-fixed { @include reset-col; margin: $gutter-v 0 0; }
+        > .col-fixed { @include reset-col; margin: $gutter-y 0 0; }
       }
     }
   }
@@ -177,6 +177,6 @@
 
 @each $bp in $bps {
   .section-#{nth($bp,1)} {
-    @include mq(nth($bp,2)) { margin: 0 0 $gutter-v; }
+    @include mq(nth($bp,2)) { margin: 0 0 $gutter-y; }
   }
 }
