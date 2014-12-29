@@ -46,14 +46,15 @@ address {
   font-style: normal;
 }
 
-blockquote {
+blockquote,
+q {
   quotes: none;
-}
 
-blockquote:before,
-blockquote:after {
-  content: '';
-  content: none;
+  &:before,
+  &:after {
+    content: '';
+    content: none;
+  }
 }
 
 img,
@@ -155,7 +156,6 @@ button {
 ::-moz-placeholder          { text-overflow: ellipsis; }
 :-moz-placeholder           { text-overflow: ellipsis; }
 :placeholder                { text-overflow: ellipsis; }
-[placeholder]               { text-overflow: ellipsis; }
 
 
 
