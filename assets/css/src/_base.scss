@@ -1,0 +1,214 @@
+//  ----------------------------------------------------------------------
+//  =BASE
+//  ----------------------------------------------------------------------
+
+:last-child {
+  margin-bottom: 0;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: $fonts;
+}
+
+body,
+select,
+button {
+  line-height: 1;
+}
+
+body {
+  color: $text;
+  font-size: $font-size;
+
+  .lt-ie9 & {
+    width: $full;
+    margin: auto;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+p,
+blockquote,
+figcaption {
+  line-height: $line-height;
+}
+
+p {
+  margin: 0 0 $block-y;
+}
+
+address {
+  font-style: normal;
+}
+
+blockquote {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after {
+  content: '';
+  content: none;
+}
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: normal;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+  outline: 0;
+}
+
+cite {
+  font-style: normal;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+
+input,
+textarea,
+select,
+button {
+  border: 0;
+  outline: 0;
+}
+
+label,
+input[type="checkbox"],
+input[type="radio"],
+select,
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+}
+
+input,
+textarea {
+  @include placeholder($placeholder);
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  @include appearance(none);
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+button {
+  background: none;
+}
+
+::-webkit-input-placeholder { text-overflow: ellipsis; }
+::-moz-placeholder          { text-overflow: ellipsis; }
+:-moz-placeholder           { text-overflow: ellipsis; }
+:placeholder                { text-overflow: ellipsis; }
+[placeholder]               { text-overflow: ellipsis; }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =UTILITIES
+//  ----------------------------------------------------------------------
+
+.affix { position: fixed; }
+
+.block { margin-bottom: $block-y; }
+
+.copy { line-height: $line-height; }
+
+.context { position: relative; }
+
+
+.pull-right { float: right; }
+.pull-left  { float: left;  }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =STATES
+//  ----------------------------------------------------------------------
+
+.active { cursor: default; }
+.disabled,
+[disabled] { cursor: default !important; pointer-events: none; }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =COMPONENTS
+//  ----------------------------------------------------------------------
+
+.btn-full { width: 100%; display: block; text-align: $btn-align; }
+.img-full { width: 100%; max-width: none; }
+
+
+.embed { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
+.embed > .embed-src { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+
+
+.list-alpha    { list-style: lower-alpha; padding-left: $list-p; }
+.list-bulleted { list-style: disc;        padding-left: $list-p; }
+.list-numbered { list-style: decimal;     padding-left: $list-p; }
+.list-blocks > li,
+.list-blocks > dd { margin-bottom: $block-y; }
+
+
+.form-single { width: 100%; display: table; }
+.form-single-input { width: 100%; display: table-cell; }
+.form-single-action { width: 1%; display: table-cell; padding: 0 0 0 $form-single-gutter; }

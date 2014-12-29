@@ -9,20 +9,15 @@
       , 'vendor/**/*'
       , 'vars'
       , 'sass'
-      , 'grid';
+      , 'grid'
+      , 'base';
 
 
 
 
 //  ----------------------------------------------------------------------
-//  =BASE
+//  =ELEMENTS
 //  ----------------------------------------------------------------------
-
-body, input, textarea, select, button { font-family: $fonts; }
-body {
-  color: $text; font-size: $font-size;
-  .lt-ie9 & { width: $full; margin: auto; }
-}
 
 @for $i from 1 through 6 {
   %h#{$i} { @extend %h; }
@@ -38,17 +33,6 @@ body {
 %h5 { font-size: $font-size; font-weight: bold; }
 %h6 { font-size: $font-size; text-transform: uppercase; }
 
-p { @include block; @include copy; }
-
-blockquote,
-figcaption { @include copy; }
-
-
-//  =FORMS
-input,
-textarea { @include placeholder($placeholder); }
-select { @include appearance(none); text-indent: 1px; text-overflow: ''; }
-
 
 
 
@@ -56,7 +40,7 @@ select { @include appearance(none); text-indent: 1px; text-overflow: ''; }
 //  =SCAFFOLDING
 //  ----------------------------------------------------------------------
 
-.section { margin: 0 0 $gutter-v; @include reset-margins; }
+
 
 
 

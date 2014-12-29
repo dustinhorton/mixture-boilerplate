@@ -3,7 +3,8 @@
 //  ----------------------------------------------------------------------
 
 @mixin cols($gutter: $gutter) {
-  margin-right: -$gutter / 2; margin-left:  -$gutter / 2;
+  margin-right: -$gutter / 2;
+  margin-left:  -$gutter / 2;
 }
 
 @mixin col($gutter: $grid-gutter) {
@@ -21,7 +22,12 @@
 @mixin reset-cols {
   margin-right: 0; margin-left: 0;
 
-  > [class*="col-"] { width: auto; float: none; padding-right: 0; padding-left: 0; }
+  > [class*="col-"] {
+    width: auto;
+    float: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 
@@ -31,11 +37,14 @@
 
   > [class*="col-"] {
     @include col($gutter);
-    min-height: 1px; float: left;
+    min-height: 1px;
+    float: left;
   }
 }
 
-.cols-rev > [class*="col-"] { float: right; }
+.cols-rev > [class*="col-"] {
+  float: right;
+}
 
 
 @mixin generate-all-cols($cols, $bp: '') {
@@ -46,8 +55,11 @@
 
     @for $x from 1 through $i {
       @if $bp == '' {
-        .col-#{$x}-#{$i} { width: w($x,$i); }
-      } @else {
+        .col-#{$x}-#{$i} {
+          width: w($x,$i);
+        }
+      }
+      @else {
         .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
       }
     }
@@ -55,13 +67,14 @@
 }
 
 @each $bp in $bps {
-  @if nth($bp,1) == 'full' {
+  @if nth($bp, 1) == full {
     @include generate-all-cols($cols-total);
-  } @else {
-    @include mq(nth($bp,2)) {
-      @include generate-all-cols($cols-total, nth($bp,1));
+  }
+  @else {
+    @media (max-width: nth($bp, 2)) {
+      @include generate-all-cols($cols-total, nth($bp, 1));
 
-      .cols-reset-#{nth($bp,1)} { @include reset-cols; }
+      .cols-reset-#{nth($bp, 1)} { @include reset-cols; }
     }
   }
 }
@@ -97,8 +110,8 @@
   }
 
   @each $bp in $bps {
-    .cols-fixed-reset-#{nth($bp,1)} {
-      @include mq(nth($bp,2)) {
+    .cols-fixed-reset-#{nth($bp, 1)} {
+      @media (max-width: nth($bp, 2)) {
         > [class*="col-"] { @include reset-col; }
         > .col-fixed { @include reset-col; margin: $gutter-y 0 0; }
       }
@@ -147,24 +160,27 @@
   @for $i from 1 through $cols {
     @if $bp == '' {
       .cols-#{$i} { @include cols-copy($i); }
-    } @else {
+    }
+    @else {
       .cols-#{$bp}-#{$i} { @include column-count($i); }
     }
   }
 }
 
 @each $bp in $bps {
-    @if nth($bp,1) == 'full' {
-      @include generate-cols-copy($cols-copy-total);
-    } @else {
-        @include mq(nth($bp,2)) {
-            @include generate-cols-copy($cols-copy-total, nth($bp,1));
-        }
+  @if nth($bp, 1) == full {
+    @include generate-cols-copy($cols-copy-total);
+  }
+  @else {
+    @media (max-width: nth($bp, 2)) {
+      @include generate-cols-copy($cols-copy-total, nth($bp, 1));
     }
+  }
 }
 
 @mixin col-unit {
-  @include break-inside(avoid);
+  //@include break-inside(avoid);
+  //display: table;  // ff - https://bugzilla.mozilla.org/show_bug.cgi?id=549114#c6
 }
 .col-unit { @include col-unit; }
 
@@ -172,11 +188,13 @@
 
 
 //  ----------------------------------------------------------------------
-//  =SECTIONS
+//  =ROWS
 //  ----------------------------------------------------------------------
 
 @each $bp in $bps {
-  .section-#{nth($bp,1)} {
-    @include mq(nth($bp,2)) { margin: 0 0 $gutter-y; }
+  .row-#{nth($bp, 1)} {
+    @media (max-width: nth($bp, 2)) {
+      margin: 0 0 $gutter-y;
+    }
   }
 }
