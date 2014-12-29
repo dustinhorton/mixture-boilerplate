@@ -3,12 +3,15 @@
 //  ----------------------------------------------------------------------
 
 //  =TYPE
-$text:        #000 !default;
-$fonts:       helvetica neue, helvetica, arial, sans-serif !default;
-$font-size:   15px !default;
+$text: #000 !default;
+$fonts: helvetica neue, helvetica, arial, sans-serif !default;
+$font-size: 15px !default;
+
 $line-height: 1.35 !default;
+
 $h-font-weight: normal !default;
-$placeholder: rgba($text,0.75) !default;
+
+$placeholder: rgba($text, 0.75) !default;
 $btn-align: left !default;
 
 
@@ -22,10 +25,12 @@ $cols-copy-total:  $cols !default;
 //  =SPACING
 $gutter:   20px !default;
 $gutter-y: 50px !default;
-$block-y:  10px !default;
+$block-y:  20px !default;
 
 $container-gutter: $gutter !default;
+
 $list-p: 1.35em !default;
+
 $modal-s: 10px !default;
 
 $form-single-gutter: $gutter / 2 !default;
@@ -36,7 +41,7 @@ $content: 960px !default;
 
 
 //  =ANIMATION
-$dur:  150ms !default;
+$dur: 150ms !default;
 $ease: ease-in-out !default;
 
 
@@ -47,17 +52,15 @@ $ease: ease-in-out !default;
 //  ----------------------------------------------------------------------
 
 //  =VIEWPORTS
-$full:       $content + $gutter * 2;
-$gt-full:    $full + 1;
-$lt-full:    $full - 1;
-$desktop:    960px;
-$lt-desktop: $desktop - 1;
-$tablet:     768px;
-$lt-tablet:  $tablet - 1;
-$mobile:     568px;
-$lt-mobile:  $mobile - 1;
-$mobile-sm:  320px;
-$bps: full $full, lt-full $lt-full, tablet $tablet, lt-tablet $lt-tablet, mobile $mobile, lt-mobile $lt-mobile, mobile-sm $mobile-sm;
+$full:       $content + $gutter * 2 !default;
+$gt-full:    $full + 1              !default;
+$lt-full:    $full - 1              !default;
+$desktop:    960px                  !default;
+$tablet:     768px                  !default;
+$mobile:     568px                  !default;
+$mobile-med: 480px                  !default;
+$mobile-sm:  320px                  !default;
+$bps: full $full, lt-full $lt-full, desktop $desktop, tablet $tablet, mobile $mobile, mobile-med $mobile-med, mobile-sm $mobile-sm !default;
 
 
 //  =COLORS
@@ -201,17 +204,6 @@ $prefixes: webkit, moz, ms, o;
   }
 }
 .cf { @include cf; }
-
-
-@mixin container {  /**/
-  max-width: $full;
-  margin: auto;
-  padding: 0 $container-gutter;
-}
-.container { @include container; }
-
-
-
 
 
 @mixin font-icon {
@@ -493,13 +485,13 @@ $btn: 'button:hover, button:focus';
 
 
 //  ----------------------------------------------------------------------
-//  =MEDIA QUERIES
+//  =MEDIA QUERIES & BROWSER TARGETING
 //  ----------------------------------------------------------------------
 
 $hidpi: '-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi';
 
 @mixin mq-class($bp, $class) {
-  @include media(max-width: $bp) {
+  @media (max-width: $bp) {
     @content;
   }
 
@@ -520,11 +512,6 @@ $hidpi: '-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi';
     }
   }
 }
-
-
-
-
-
 
 
 

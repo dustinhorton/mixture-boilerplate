@@ -161,31 +161,10 @@ button {
 
 
 //  ----------------------------------------------------------------------
-//  =UTILITIES
+//  =SCAFFOLDING
 //  ----------------------------------------------------------------------
 
-.affix { position: fixed; }
-
-.block { margin-bottom: $block-y; }
-
-.copy { line-height: $line-height; }
-
-.context { position: relative; }
-
-
-.pull-right { float: right; }
-.pull-left  { float: left;  }
-
-
-
-
-//  ----------------------------------------------------------------------
-//  =STATES
-//  ----------------------------------------------------------------------
-
-.active { cursor: default; }
-.disabled,
-[disabled] { cursor: default !important; pointer-events: none; }
+.container { max-width: $full; margin: auto; padding: 0 $container-gutter; }
 
 
 
@@ -212,3 +191,33 @@ button {
 .form-single { width: 100%; display: table; }
 .form-single-input { width: 100%; display: table-cell; }
 .form-single-action { width: 1%; display: table-cell; padding: 0 0 0 $form-single-gutter; }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =UTILITIES
+//  ----------------------------------------------------------------------
+
+.affix { position: fixed; }
+
+.block { margin-bottom: $block-y; }
+
+.copy { line-height: $line-height; }
+
+.context { position: relative; }
+
+
+.pull-right { float: right; }
+.pull-left  { float: left;  }
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =STATES
+//  ----------------------------------------------------------------------
+
+.active { cursor: default; }
+.disabled,
+[disabled] { cursor: default !important; pointer-events: none; }
